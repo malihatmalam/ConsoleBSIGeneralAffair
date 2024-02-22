@@ -115,9 +115,9 @@
       <Project>{dd146b4a-d6a5-4738-bc43-0f9a6828278b}</Project>
       <Name>BSIGeneralAffairBO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.vbproj">
-      <Project>{5b170f5a-da3b-41cb-a804-35ed8812fe48}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\BSIGeneralAffairDAL\BSIGeneralAffairDAL.vbproj">
+      <Project>{4972ccaa-1a2e-48e3-9c6c-bea9ac24157c}</Project>
+      <Name>BSIGeneralAffairDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
