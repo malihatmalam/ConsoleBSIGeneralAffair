@@ -11,11 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{23099FB7-65D5-4119-B65F-575A206DE006}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BSIGeneralAffairBO", "BSIGeneralAffairBO\BSIGeneralAffairBO.vbproj", "{DD146B4A-D6A5-4738-BC43-0F9A6828278B}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "BSIGeneralAffairBO", "BSIGeneralAffairBO\BSIGeneralAffairBO.vbproj", "{DD146B4A-D6A5-4738-BC43-0F9A6828278B}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BSIGeneralAffairDAL", "BSIGeneralAffairDAL\BSIGeneralAffairDAL.vbproj", "{4972CCAA-1A2E-48E3-9C6C-BEA9AC24157C}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "BSIGeneralAffairDAL", "BSIGeneralAffairDAL\BSIGeneralAffairDAL.vbproj", "{4972CCAA-1A2E-48E3-9C6C-BEA9AC24157C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GeneralAffairInterface", "GeneralAffairInterface\GeneralAffairInterface.vbproj", "{ADBA4C92-C283-478D-9BD5-46AE9C7574A7}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "GeneralAffairInterface", "GeneralAffairInterface\GeneralAffairInterface.vbproj", "{ADBA4C92-C283-478D-9BD5-46AE9C7574A7}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WebFormBSIGeneralAffair", "WebFormBSIGeneralAffair\WebFormBSIGeneralAffair.vbproj", "{CB4B5CCF-C65A-4FE7-9EEA-D3F7E52ADAF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{ADBA4C92-C283-478D-9BD5-46AE9C7574A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADBA4C92-C283-478D-9BD5-46AE9C7574A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADBA4C92-C283-478D-9BD5-46AE9C7574A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB4B5CCF-C65A-4FE7-9EEA-D3F7E52ADAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB4B5CCF-C65A-4FE7-9EEA-D3F7E52ADAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB4B5CCF-C65A-4FE7-9EEA-D3F7E52ADAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB4B5CCF-C65A-4FE7-9EEA-D3F7E52ADAF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
