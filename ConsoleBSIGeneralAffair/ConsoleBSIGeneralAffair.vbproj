@@ -72,6 +72,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryModule.vb" />
+    <Compile Include="DepartmentModule.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="BrandModule.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
