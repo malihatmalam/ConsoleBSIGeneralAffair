@@ -7,7 +7,8 @@ Module Module1
         'VendorDB()
         'VendorCreateDB()
         'VendorUpdateDB()
-        VendorDeleteDB()
+        'VendorDeleteDB()
+        BrandDB()
     End Sub
 
     Sub VendorDB()

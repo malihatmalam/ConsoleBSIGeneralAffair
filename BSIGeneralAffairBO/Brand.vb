@@ -1,5 +1,5 @@
 ﻿Public Class Brand
     Public Property BrandID As Short?
     Public Property BrandName As String
-    Public Property UpdatedAt As DateTime?
+    Public Property UpdatedAt As String
 End Class
