@@ -8,7 +8,58 @@ Module Module1
         'VendorCreateDB()
         'VendorUpdateDB()
         'VendorDeleteDB()
-        BrandDB()
+        'BrandDB()
+        'EmployeeCreateDB()
+        ListEmpoloyee()
+    End Sub
+
+    Sub ListEmpoloyee()
+        Dim employeeDAL As New BSIGeneralAffairDAL.DALEmployee
+
+        Dim employies = employeeDAL.getAll()
+        For Each employee As Employee In employies
+            Console.WriteLine(
+                "{0}, {1}, {2}, {3}, {4}, {5}, {6}",
+                employee.EmployeeIDNumber,
+                employee.User.UserFullName,
+                employee.EmployeePosition,
+                employee.EmployeeGender,
+                employee.Department.DepartementName,
+                employee.Office.OfficeName,
+                employee.EmployeeHireDate
+                )
+        Next
+    End Sub
+
+    Sub EmployeeCreateDB()
+        Dim EmployeeDAL As New BSIGeneralAffairDAL.DALEmployee
+        Dim newEmployee As New Employee
+        newEmployee.User = New User()
+        newEmployee.User.UserFirstName = "Sugi Sutejo"
+        newEmployee.User.UserLastName = "Aji Pangestu"
+        newEmployee.EmployeeIDNumber = "80327"
+        newEmployee.Department = New Departement()
+        newEmployee.Department.DepartementID = 9
+        newEmployee.Office = New Office()
+        newEmployee.Office.OfficeID = 5
+        newEmployee.EmployeePositionLevel = "Staff"
+        newEmployee.EmployeeJobTitle = "Senior Networking Engineer"
+        newEmployee.EmployeeGender = "M"
+        newEmployee.EmployeeMaritalStatus = "S"
+        newEmployee.EmployeeBirthDate = "2001-11-02"
+        newEmployee.EmployeeHireDate = "2024-01-14"
+        newEmployee.EmployeeSalary = 40000000
+        newEmployee.EmployeeType = "O"
+        Try
+            Dim result = EmployeeDAL.create(newEmployee)
+            If result = 1 Then
+                Console.WriteLine("Insert failed")
+            Else
+                Console.WriteLine("Insert success")
+            End If
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Sub VendorDB()

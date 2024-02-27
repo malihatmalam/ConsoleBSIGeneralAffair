@@ -1,5 +1,6 @@
 Public Class User
     Public Property UserID As Integer?
+    Public Property UserFullName As String
     Public Property UserFirstName As String
     Public Property UserLastName As String
     Public Property UserUsername As String
