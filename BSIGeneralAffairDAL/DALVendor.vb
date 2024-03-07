@@ -92,7 +92,7 @@ Public Class DALVendor
         End Try
     End Function
 
-    Private Function GetById(vendorID As Integer) As Object
+    Public Function GetById(vendorID As Integer) As Object
         Try
             cmd = New SqlCommand("SELECT * FROM [GeneralAffair].[Vendors] WHERE VendorID = @VendorID", database.conn)
             cmd.Parameters.AddWithValue("@VendorID", vendorID)
