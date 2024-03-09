@@ -7,6 +7,7 @@ namespace BSIGeneralAffairBLL.Interfaces
 {
     public interface IUserBLL
     {
+        IEnumerable<UserDTO> GetAll();
         UserDTO Login(string username, string password);
         UserDTO GetByUsername(string username);
     }

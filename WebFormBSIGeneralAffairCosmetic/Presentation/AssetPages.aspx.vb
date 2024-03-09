@@ -112,9 +112,9 @@ Public Class AssetPages
     End Sub
 
     ' The id parameter name should match the DataKeyNames value set on the control
-    Public Sub Delete(AssetID As Integer)
+    Public Sub Delete(AssetNumber As String)
         Try
-            _assetBLL.Delete(AssetID)
+            _assetBLL.Delete(AssetNumber)
             ltMessage.Text = "<span class='alert alert-success'>Asset deleted successfully</span>"
             gvAssets.DataBind()
         Catch ex As Exception

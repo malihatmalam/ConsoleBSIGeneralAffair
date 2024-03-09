@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Xml.Linq;
+using static Dapper.SqlMapper;
 
 namespace BSIGeneralAffairDAL_C
 {
@@ -68,7 +69,7 @@ namespace BSIGeneralAffairDAL_C
                         asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
-                        asset.AssetProcurementDate = dr["ProcurementDate"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
                         asset.AssetCondition = dr["Condition"].ToString();
 
                         assets.Add(asset);
@@ -105,7 +106,7 @@ namespace BSIGeneralAffairDAL_C
                         asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
-                        asset.AssetProcurementDate = dr["ProcurementDate"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
                         asset.AssetCondition = dr["Condition"].ToString();
 
                         assets.Add(asset);
@@ -150,7 +151,7 @@ namespace BSIGeneralAffairDAL_C
                         asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
-                        asset.AssetProcurementDate = dr["ProcurementDate"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
                         asset.AssetCondition = dr["Condition"].ToString();
 
                         assets.Add(asset);
@@ -170,7 +171,7 @@ namespace BSIGeneralAffairDAL_C
                 SqlCommand cmd = new SqlCommand(strSql, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@AssetNumber", $"%{numberAsset}%");
+                cmd.Parameters.AddWithValue("@AssetNumber", $"{numberAsset}");
 
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -183,12 +184,15 @@ namespace BSIGeneralAffairDAL_C
                         asset.AssetID = Convert.ToInt32(dr["ID"]);
                         asset.Brand = new Brand();
                         asset.Brand.BrandName = dr["Brand"].ToString();
+                        asset.Brand.BrandID = (short?)Convert.ToInt32(dr["BrandID"]);
                         asset.Category = new AssetCategory();
                         asset.Category.AssetCategoryName = dr["Category"].ToString();
+                        asset.Category.AssetCategoryID = (short?)Convert.ToInt32(dr["CategoryID"]);
                         asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
-                        asset.AssetProcurementDate = dr["ProcurementDate"].ToString();
+                        asset.AssetNumber = dr["AssetNumber"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
                         asset.AssetCondition = dr["Condition"].ToString();
 
                         assets.Add(asset);
@@ -211,7 +215,36 @@ namespace BSIGeneralAffairDAL_C
 
         public IEnumerable<AssetUser> GetHandsoverHistoryAsset(int assetID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                List<AssetUser> assetUsers = new List<AssetUser>();
+                //var strSql = @"select * from Categories order by CategoryName";
+                var strSql = @"[GeneralAffair].[USP_GetHandsoverAssetHistory]";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AssetID", assetID);
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        AssetUser assetUser = new AssetUser();
+                        assetUser.AssetUserID = Convert.ToInt32(dr["ID"]);
+                        assetUser.UserID = Convert.ToInt32(dr["UserID"]);
+                        assetUser.AssetID = assetID;
+                        assetUser.HandoverDateTime = DateTime.Parse(dr["HandoverDateTime"].ToString());
+                        User user = new User();
+                        assetUser.User = user;
+                        assetUser.User.UserFullName = dr["UserFullname"].ToString();
+
+                        assetUsers.Add(assetUser);
+                    }
+                }
+                return assetUsers;
+            }
         }
 
         public IEnumerable<Asset> GetWithPaging(int pageNumber, int pageSize, string name)
@@ -244,7 +277,7 @@ namespace BSIGeneralAffairDAL_C
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetNumber = dr["AssetNumber"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
-                        asset.AssetProcurementDate = dr["ProcurementDate"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
                         asset.AssetCondition = dr["Condition"].ToString();
 
                         assets.Add(asset);
@@ -254,9 +287,34 @@ namespace BSIGeneralAffairDAL_C
             }
         }
 
-        public void HandsoverAsset(User userHandsover, Asset assetHandsover)
+        public void HandsoverAsset(int userID, int assetID, string handoverDateTime)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var strSql = "[GeneralAffair].[USP_HandsoverAssetUser]";
+                var param = new
+                {
+                    UserID = userID,
+                    AssetID = assetID,
+                    HandoverDateTime = handoverDateTime
+                };
+                try
+                {
+                    int result = conn.Execute(strSql, param, commandType: System.Data.CommandType.StoredProcedure);
+                    if (result == 1)
+                    {
+                        throw new ArgumentException("Insert data failed..");
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new ArgumentException($"{sqlEx.InnerException.Message} - {sqlEx.Number}");
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException(ex.Message);
+                }
+            }
         }
 
         public void Insert(Asset entity)

@@ -13,16 +13,18 @@ Public Class LoginPages
             Dim _userDto = _userBLL.Login(txtUsername.Text, txtPassword.Text)
             If _userDto IsNot Nothing Then
 
-                If _userDto.UserRole <> "Other" Then
+                If _userDto.UserRole = "Other" Then
+                    ltMessage.Text = "<br/><span class='alert alert-danger'>Unauthorized: Account lacks login permissions. Contact admin for help.</span><br/><br/>"
+                Else
                     Session("User") = _userDto
+                    Dim returnUrl = Request.QueryString("ReturnUrl")
+                    If Not String.IsNullOrEmpty(returnUrl) Then
+                        Response.Redirect("~/" & returnUrl)
+                    Else
+                        Response.Redirect("~/Presentation/VendorPages.aspx")
+                    End If
                 End If
 
-                Dim returnUrl = Request.QueryString("ReturnUrl")
-                If Not String.IsNullOrEmpty(returnUrl) Then
-                    Response.Redirect("~/" & returnUrl)
-                Else
-                    Response.Redirect("~/Presentation/VendorPages.aspx")
-                End If
             Else
                 ltMessage.Text = "<br/><span class='alert alert-danger'>Error: Invalid Username / Password </span><br/><br/>"
             End If

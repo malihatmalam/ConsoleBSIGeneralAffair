@@ -14,7 +14,7 @@ namespace BSIGeneralAffairBO_C
         public string AssetNumber { get; set; }
         public string AssetName { get; set; }
         public decimal? AssetCost { get; set; }
-        public string AssetProcurementDate { get; set; }
+        public DateTime AssetProcurementDate { get; set; }
         public bool? AssetFlagActive { get; set; }
         public string AssetCondition { get; set; }
         public DateTime? CreatedAt { get; set; }

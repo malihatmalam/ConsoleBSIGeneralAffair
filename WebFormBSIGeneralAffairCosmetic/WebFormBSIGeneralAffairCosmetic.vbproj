@@ -162,6 +162,7 @@
     <Content Include="Presentation\BrandPages.aspx" />
     <Content Include="Presentation\CategoryPages.aspx" />
     <Content Include="Presentation\DepartementPages.aspx" />
+    <Content Include="Presentation\DetailAssetPages.aspx" />
     <Content Include="Presentation\EmployeePages.aspx" />
     <Content Include="Presentation\LoginPages.aspx" />
     <Content Include="Presentation\OfficePages.aspx" />
@@ -1984,6 +1985,13 @@
     <Compile Include="Presentation\DepartementPages.aspx.vb">
       <DependentUpon>DepartementPages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\DetailAssetPages.aspx.designer.vb">
+      <DependentUpon>DetailAssetPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\DetailAssetPages.aspx.vb">
+      <DependentUpon>DetailAssetPages.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Presentation\EmployeePages.aspx.designer.vb">
       <DependentUpon>EmployeePages.aspx</DependentUpon>

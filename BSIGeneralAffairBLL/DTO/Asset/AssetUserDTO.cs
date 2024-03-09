@@ -7,12 +7,15 @@ namespace BSIGeneralAffairBLL.DTO.Asset
 {
     public class AssetUserDTO
     {
+        public AssetUserDTO() {
+            this.Users = new UserDTO(); 
+        }
         public int? AssetUserID { get; set; }
         public int? UserID { get; set; }
         public int? AssetID { get; set; }
         public DateTime? HandoverDateTime { get; set; }
         public string HandoverFilePath { get; set; }
         public AssetDTO Asset { get; set; }
-        public UserDTO User { get; set; }
+        public UserDTO Users { get; set; }
     }
 }

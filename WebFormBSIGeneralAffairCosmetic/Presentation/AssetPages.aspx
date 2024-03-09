@@ -40,7 +40,7 @@
                         <hr />
                         <asp:GridView ID="gvAssets" CssClass="table table-hover" ItemType="BSIGeneralAffairBLL.DTO.Asset.AssetDTO"
                             SelectMethod="GetAll" UpdateMethod="Update" DeleteMethod="Delete"
-                            DataKeyNames="AssetID" runat="server" AutoGenerateColumns="False">
+                            DataKeyNames="AssetNumber" runat="server" AutoGenerateColumns="False">
                             <Columns>
                                 <asp:TemplateField HeaderText="Asset Number">
                                     <ItemTemplate>
@@ -85,7 +85,7 @@
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:HyperLink Text="details"
-                                            NavigateUrl='<%--<%# Eval("CategoryID", "~/DetailArticlePage?CategoryID={0}") %>--%>' CssClass="btn btn-success btn-sm" runat="server" />
+                                            NavigateUrl='<%# eval("AssetNumber", "~/presentation/detailassetpages?assetnumber={0}") %>' CssClass="btn btn-success btn-sm" runat="server" />
                                         &nbsp;<asp:LinkButton ID="LinkButton2" CssClass="btn btn-outline-danger btn-sm" runat="server" CausesValidation="False" CommandName="Delete"
                                             OnClientClick="return confirm('Apakah anda yakin untuk delete data ?')" Text="Delete"></asp:LinkButton>
                                     </ItemTemplate>
@@ -100,7 +100,7 @@
             </div>
 
             <div class="modal" id="myModal">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">

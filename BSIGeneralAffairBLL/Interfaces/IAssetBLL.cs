@@ -16,8 +16,8 @@ namespace BSIGeneralAffairBLL.Interfaces
         IEnumerable<AssetDTO> GetByName(string name);
         IEnumerable<AssetDTO> GetWithPaging(int pageNumber, int pageSize, string name);
         int GetCountAssets(string name);
-        IEnumerable<AssetDTO> GetByNumberAsset(string numberAsset);
-        void HandsoverAsset(UserDTO userHandsover, AssetDTO assetHandsover);
+        AssetDTO GetByNumberAsset(string numberAsset);
+        void HandsoverAsset(int userID, int assetID, string handoverDateTime);
         IEnumerable<AssetUserDTO> GetHandsoverHistoryAsset(int assetID);
     }
 }

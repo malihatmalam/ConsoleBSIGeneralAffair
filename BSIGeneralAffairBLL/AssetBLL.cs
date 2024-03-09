@@ -4,6 +4,7 @@ using BSIGeneralAffairBLL.DTO.Category;
 using BSIGeneralAffairBLL.DTO.Office;
 using BSIGeneralAffairBLL.DTO.User;
 using BSIGeneralAffairBLL.Interfaces;
+using BSIGeneralAffairBO;
 using BSIGeneralAffairBO_C;
 using BSIGeneralAffairDAL_C;
 using BSIGeneralAffairDAL_C.Interfaces;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using static Dapper.SqlMapper;
 
 namespace BSIGeneralAffairBLL
@@ -56,7 +58,7 @@ namespace BSIGeneralAffairBLL
                     AssetNumber = asset.AssetNumber,
                     Name = asset.AssetName,
                     Cost = asset.AssetCost,
-                    ProcurementDate = asset.AssetProcurementDate.ToString(),
+                    ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString()),
                     Condition = asset.AssetCondition,
                     AssetFlagActive = asset.AssetFlagActive,
                     CreatedAt = asset.CreatedAt.ToString(),
@@ -79,7 +81,7 @@ namespace BSIGeneralAffairBLL
                 assetDTO.AssetNumber = asset.AssetNumber;
                 assetDTO.Name = asset.AssetName;
                 assetDTO.Cost = asset.AssetCost;
-                assetDTO.ProcurementDate = asset.AssetProcurementDate.ToString();
+                assetDTO.ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString());
                 assetDTO.Condition = asset.AssetCondition;
                 assetDTO.AssetFlagActive = asset.AssetFlagActive;
                 assetDTO.CreatedAt = asset.CreatedAt.ToString();
@@ -107,7 +109,7 @@ namespace BSIGeneralAffairBLL
                     AssetNumber = asset.AssetNumber,
                     Name = asset.AssetName,
                     Cost = asset.AssetCost,
-                    ProcurementDate = asset.AssetProcurementDate.ToString(),
+                    ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString()),
                     Condition = asset.AssetCondition,
                     AssetFlagActive = asset.AssetFlagActive,
                     CreatedAt = asset.CreatedAt.ToString(),
@@ -117,7 +119,7 @@ namespace BSIGeneralAffairBLL
             return listAssetsDTO;
         }
 
-        public IEnumerable<AssetDTO> GetByNumberAsset(string numberAsset)
+        public AssetDTO GetByNumberAsset(string numberAsset)
         {
             List<AssetDTO> listAssetsDTO = new List<AssetDTO>();
             var assets = _assetDAL.GetByNumberAsset(numberAsset);
@@ -127,19 +129,32 @@ namespace BSIGeneralAffairBLL
                 {
                     AssetID = asset.AssetID,
                     AssetBrand = asset.Brand.BrandName,
+                    BrandID = asset.Brand.BrandID,
                     AssetCategory = asset.Category.AssetCategoryName,
+                    CategoryID = asset.Category.AssetCategoryID,
                     FactoryNumber = asset.AssetFactoryNumber,
                     AssetNumber = asset.AssetNumber,
                     Name = asset.AssetName,
                     Cost = asset.AssetCost,
-                    ProcurementDate = asset.AssetProcurementDate.ToString(),
+                    ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString()),
                     Condition = asset.AssetCondition,
                     AssetFlagActive = asset.AssetFlagActive,
                     CreatedAt = asset.CreatedAt.ToString(),
                     UpdatedAt = asset.UpdatedAt.ToString(),
                 });
             }
-            return listAssetsDTO;
+
+            AssetDTO assetData = new AssetDTO();
+
+            if (listAssetsDTO.Count == 0)
+            {
+                throw new ArgumentException("Username atau Password salah");
+            }
+            else
+            {
+                assetData = listAssetsDTO[0];
+            }
+            return assetData;
         }
 
         public int GetCountAssets(string name)
@@ -149,7 +164,23 @@ namespace BSIGeneralAffairBLL
 
         public IEnumerable<AssetUserDTO> GetHandsoverHistoryAsset(int assetID)
         {
-            throw new NotImplementedException();
+            List<AssetUserDTO> listAssetUsersDTO = new List<AssetUserDTO>();
+            var assetUsers = _assetDAL.GetHandsoverHistoryAsset(assetID);
+            foreach (var asset in assetUsers)
+            {
+                UserDTO userDTO = new UserDTO();
+                userDTO.UserFullName = asset.User.UserFullName;
+
+                listAssetUsersDTO.Add(new AssetUserDTO
+                {
+                    AssetUserID = asset.AssetUserID,
+                    UserID = asset.UserID,
+                    AssetID = asset.AssetID,
+                    HandoverDateTime = asset.HandoverDateTime,
+                    Users = userDTO
+                });
+            }
+            return listAssetUsersDTO;
         }
 
         public IEnumerable<AssetDTO> GetWithPaging(int pageNumber, int pageSize, string name)
@@ -167,7 +198,7 @@ namespace BSIGeneralAffairBLL
                     AssetNumber = asset.AssetNumber,
                     Name = asset.AssetName,
                     Cost = asset.AssetCost,
-                    ProcurementDate = asset.AssetProcurementDate.ToString(),
+                    ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString()),
                     Condition = asset.AssetCondition,
                     AssetFlagActive = asset.AssetFlagActive,
                     CreatedAt = asset.CreatedAt.ToString(),
@@ -177,9 +208,29 @@ namespace BSIGeneralAffairBLL
             return listAssetsDTO;
         }
 
-        public void HandsoverAsset(UserDTO userHandsover, AssetDTO assetHandsover)
+        public void HandsoverAsset(int userID, int assetID, string handoverDateTime)
         {
-            throw new NotImplementedException();
+            if (userID == 0)
+            {
+                throw new ArgumentException("User is required");
+            }
+            if (assetID == 0)
+            {
+                throw new ArgumentException("Asset is required");
+            }
+            if (string.IsNullOrEmpty(handoverDateTime))
+            {
+                throw new ArgumentException("Handover date is required");
+            }
+
+            try
+            {
+                _assetDAL.HandsoverAsset(userID, assetID, handoverDateTime);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
         }
 
         public void Insert(AssetCreateDTO newAsset)
@@ -219,7 +270,7 @@ namespace BSIGeneralAffairBLL
 
             try
             {
-                var assetDTO = new Asset
+                var assetDTO = new BSIGeneralAffairBO_C.Asset
                 {
 
                     BrandID = (short?)newAsset.Brand,
@@ -228,7 +279,7 @@ namespace BSIGeneralAffairBLL
                     AssetNumber = newAsset.AssetNumber,
                     AssetName = newAsset.AsssetName,
                     AssetCost = newAsset.AssetCost,
-                    AssetProcurementDate = newAsset.AssetProcurementDate,
+                    AssetProcurementDate = DateTime.Parse(newAsset.AssetProcurementDate),
                     AssetFlagActive = true,
                     AssetCondition = "New"
                 };
@@ -281,7 +332,7 @@ namespace BSIGeneralAffairBLL
 
             try
             {
-                var assetDTO = new Asset
+                var assetDTO = new BSIGeneralAffairBO_C.Asset
                 {
 
                     BrandID = (short?)updateAsset.Brand,
@@ -290,7 +341,7 @@ namespace BSIGeneralAffairBLL
                     AssetNumber = updateAsset.AssetNumber,
                     AssetName = updateAsset.AsssetName,
                     AssetCost = updateAsset.AssetCost,
-                    AssetProcurementDate = updateAsset.AssetProcurementDate,
+                    AssetProcurementDate = DateTime.Parse(updateAsset.AssetProcurementDate),
                     AssetFlagActive = true,
                     AssetCondition = updateAsset.AssetCondition,
                 };

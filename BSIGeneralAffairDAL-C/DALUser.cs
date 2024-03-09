@@ -74,6 +74,15 @@ namespace BSIGeneralAffairDAL_C
 
         }
 
+        public IEnumerable<User> GetAll() {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                var strSql = @"select * from [Person].[Users] order by [UserUsername]";
+                var results = conn.Query<User>(strSql);
+                return results;
+            }
+        }
+
         private string GetConnectionString()
         {
             //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";

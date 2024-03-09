@@ -60,5 +60,25 @@ namespace BSIGeneralAffairBLL
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public IEnumerable<UserDTO> GetAll() 
+        {
+            List<UserDTO> listUserDTO = new List<UserDTO>();
+            var users = _userDAL.GetAll();
+            foreach ( var user in users ) 
+            {
+                listUserDTO.Add(new UserDTO 
+                {
+                    UserID = user.UserID,
+                    UserFirstName= user.UserFirstName,
+                    UserLastName= user.UserLastName,
+                    UserToken = user.UserToken,
+                    UserRole = user.UserRole,
+                    UserUsername = user.UserUsername,
+                    UserFullName = user.UserFirstName + " " + user.UserLastName,
+                });
+            }
+            return listUserDTO;
+        }
     }
 }
