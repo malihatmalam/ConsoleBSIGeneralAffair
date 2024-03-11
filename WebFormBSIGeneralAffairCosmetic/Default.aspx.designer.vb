@@ -12,4 +12,94 @@ Option Explicit On
 
 
 Partial Public Class _Default
+
+    '''<summary>
+    '''lAssetCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lAssetCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lBrandCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lBrandCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lTotalCostAsset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lTotalCostAsset As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lEmployeeCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lEmployeeCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lProcurementCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lProcurementCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lServiceCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lServiceCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lCompletedProposalCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lCompletedProposalCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lRejectProposalCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lRejectProposalCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lVendorCount control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lVendorCount As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''gvProposals control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gvProposals As Global.System.Web.UI.WebControls.GridView
 End Class

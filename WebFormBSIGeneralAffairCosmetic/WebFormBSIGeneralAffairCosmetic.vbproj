@@ -162,8 +162,12 @@
     <Content Include="Presentation\BrandPages.aspx" />
     <Content Include="Presentation\CategoryPages.aspx" />
     <Content Include="Presentation\DepartementPages.aspx" />
+    <Content Include="Presentation\DetailApprovalPages.aspx" />
     <Content Include="Presentation\DetailAssetPages.aspx" />
+    <Content Include="Presentation\DetailProposalPages.aspx" />
     <Content Include="Presentation\EmployeePages.aspx" />
+    <Content Include="Presentation\HistoryProposalPages.aspx" />
+    <Content Include="Presentation\HistoryProposalServicePages.aspx" />
     <Content Include="Presentation\LoginPages.aspx" />
     <Content Include="Presentation\OfficePages.aspx" />
     <Content Include="Presentation\VendorPages.aspx" />
@@ -1986,11 +1990,25 @@
       <DependentUpon>DepartementPages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Presentation\DetailApprovalPages.aspx.designer.vb">
+      <DependentUpon>DetailApprovalPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\DetailApprovalPages.aspx.vb">
+      <DependentUpon>DetailApprovalPages.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Presentation\DetailAssetPages.aspx.designer.vb">
       <DependentUpon>DetailAssetPages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentation\DetailAssetPages.aspx.vb">
       <DependentUpon>DetailAssetPages.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\DetailProposalPages.aspx.designer.vb">
+      <DependentUpon>DetailProposalPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\DetailProposalPages.aspx.vb">
+      <DependentUpon>DetailProposalPages.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Presentation\EmployeePages.aspx.designer.vb">
@@ -1999,6 +2017,20 @@
     <Compile Include="Presentation\EmployeePages.aspx.vb">
       <DependentUpon>EmployeePages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\HistoryProposalPages.aspx.designer.vb">
+      <DependentUpon>HistoryProposalPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\HistoryProposalPages.aspx.vb">
+      <DependentUpon>HistoryProposalPages.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Presentation\HistoryProposalServicePages.aspx.designer.vb">
+      <DependentUpon>HistoryProposalServicePages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\HistoryProposalServicePages.aspx.vb">
+      <DependentUpon>HistoryProposalServicePages.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Presentation\LoginPages.aspx.designer.vb">
       <DependentUpon>LoginPages.aspx</DependentUpon>
@@ -2253,6 +2285,10 @@
     <ProjectReference Include="..\BSIGeneralAffairBLL\BSIGeneralAffairBLL.csproj">
       <Project>{eb10b8f7-c57a-46ac-b29e-630a3510c371}</Project>
       <Name>BSIGeneralAffairBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BSIGeneralAffairBO-C\BSIGeneralAffairBO-C.csproj">
+      <Project>{078B35A5-11EA-4C8E-8F34-D7C78BBB804A}</Project>
+      <Name>BSIGeneralAffairBO-C</Name>
     </ProjectReference>
     <ProjectReference Include="..\BSIGeneralAffairBO\BSIGeneralAffairBO.vbproj">
       <Project>{dd146b4a-d6a5-4738-bc43-0f9a6828278b}</Project>

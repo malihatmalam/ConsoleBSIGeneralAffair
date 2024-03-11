@@ -78,7 +78,7 @@ Public Class DetailAssetPages
                 ddCondition.SelectedValue = _asset.Condition
                 ViewState("AssetID") = _asset.AssetID
             Else
-                ltMessage.Text = "<span class='alert alert-danger'>Error: Article not found</span><br/><br/>"
+                ltMessage.Text = "<span class='alert alert-danger'>Error: Asset not found</span><br/><br/>"
             End If
         Catch ex As Exception
             ltMessage.Text = "<span class='alert alert-danger'>Error: " & ex.Message & "</span><br/><br/>"
@@ -118,7 +118,7 @@ Public Class DetailAssetPages
             _assetBLL.Update(_asset)
 
             Response.Redirect("~/Presentation/AssetPages.aspx")
-            ltMessage.Text = "<span class='alert alert-success'>Asset added successfully</span><br/><br/>"
+            ltMessage.Text = "<span class='alert alert-success'>Asset updated successfully</span><br/><br/>"
         Catch ex As Exception
             ltMessage.Text = "<span class='alert alert-danger'>Error: " & ex.Message & "</span><br/><br/>"
         End Try

@@ -11,140 +11,176 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class SiteMaster
+Partial Public Class DetailApprovalPages
 
     '''<summary>
-    '''ltMenu control.
+    '''ltMessage control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ltMenu As Global.System.Web.UI.WebControls.Literal
+    Protected WithEvents ltMessage As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''HyperLink10 control.
+    '''ddProposalType control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink10 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents ddProposalType As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''HyperLink8 control.
+    '''txtProposalToken control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink8 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalToken As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink5 control.
+    '''txtProposalObjective control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink5 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalObjective As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink6 control.
+    '''txtProposalDescription control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalDescription As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink3 control.
+    '''txtProposalRequireDate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink3 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalRequireDate As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink4 control.
+    '''txtProposalBudget control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalBudget As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink1 control.
+    '''txtProposalNote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalNote As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink2 control.
+    '''txtProposalStatus control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink2 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtProposalStatus As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink9 control.
+    '''txtEmployeeName control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink9 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtEmployeeName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''HyperLink7 control.
+    '''txtEmployeePosition control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents txtEmployeePosition As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ltUsername control.
+    '''txtDepartment control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ltUsername As Global.System.Web.UI.WebControls.Literal
+    Protected WithEvents txtDepartment As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pnlAnonymous control.
+    '''ddVendor control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlAnonymous As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents ddVendor As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''pnlLoggedIn control.
+    '''txtNegotiationNote control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlLoggedIn As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents txtNegotiationNote As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''MainContent control.
+    '''btnAdd control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''ddApprovalType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddApprovalType As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtApprovalReason control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtApprovalReason As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnAddApproval control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddApproval As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lvApprovalHistory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lvApprovalHistory As Global.System.Web.UI.WebControls.ListView
 End Class

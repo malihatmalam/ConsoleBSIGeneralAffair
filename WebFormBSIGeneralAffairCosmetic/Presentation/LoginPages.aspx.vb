@@ -21,7 +21,7 @@ Public Class LoginPages
                     If Not String.IsNullOrEmpty(returnUrl) Then
                         Response.Redirect("~/" & returnUrl)
                     Else
-                        Response.Redirect("~/Presentation/VendorPages.aspx")
+                        Response.Redirect("~/Default.aspx")
                     End If
                 End If
 
