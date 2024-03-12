@@ -141,4 +141,8 @@ Public Class DALVendor
             database.conn.Close()
         End Try
     End Function
+
+    Public Function GetByName(search As String) As Object
+        Throw New NotImplementedException()
+    End Function
 End Class

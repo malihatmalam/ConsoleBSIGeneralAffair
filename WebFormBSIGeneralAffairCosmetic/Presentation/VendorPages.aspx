@@ -25,7 +25,7 @@
                                     <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server" />
                                 </div>
                                 <div class="col">
-                                    <asp:Button ID="btnSearch" Text="Search" CssClass="btn btn-success" runat="server" />
+                                    <asp:Button ID="btnSearch" Text="Search" CssClass="btn btn-success" runat="server" OnClick="btnSearch_Click1"/>
                                 </div>
                             </div>
                             <br />

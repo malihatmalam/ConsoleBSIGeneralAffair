@@ -1,5 +1,6 @@
-﻿Imports BSIGeneralAffairBO
-Imports BSIGeneralAffairDAL
+﻿Imports BSIGeneralAffairBLL
+Imports BSIGeneralAffairBO_C
+Imports BSIGeneralAffairDAL_C
 
 Public Class VendorPages
     Inherits System.Web.UI.Page
@@ -27,8 +28,8 @@ Public Class VendorPages
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim vendorID As Integer = Convert.ToInt32(gvVendors.DataKeys(index).Value)
             'Dim categoryName = gvCategories.DataKeys(index)("CategoryName").ToString()
-            'txtVendorID.Text = vendorID.ToString()
             Dim objVendor As Vendor = vendorDAL.GetById(vendorID)
+            txtVendorID.Text = vendorID.ToString()
             txtVendorName.Text = objVendor.VendorName
             txtVendorAddress.Text = objVendor.VendorAddress
         End If
@@ -65,7 +66,7 @@ Public Class VendorPages
         Try
             Dim insertVendor As New Vendor
             insertVendor.VendorName = txtVendorName.Text
-            vendorDAL.create(insertVendor)
+            vendorDAL.Insert(insertVendor)
 
             LoadData()
             btnSave.Enabled = False
@@ -75,4 +76,9 @@ Public Class VendorPages
         End Try
     End Sub
 
+    Protected Sub btnSearch_Click1(sender As Object, e As EventArgs)
+        Dim search = txtSearch.Text
+        gvVendors.DataSource = vendorDAL.GetByName(search)
+        gvVendors.DataBind()
+    End Sub
 End Class

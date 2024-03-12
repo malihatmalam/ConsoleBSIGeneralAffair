@@ -96,7 +96,10 @@ Public Class OfficePages
         Try
             Dim newOffice As New OfficeCreateDTO
             newOffice.OfficeName = txtOfficeName.Text
+            newOffice.OfficeAddress = txtOfficeAddress.Text
             _officeBLL.Insert(newOffice)
+            txtOfficeName.Text = String.Empty
+            txtOfficeAddress.Text = String.Empty
 
             gvOffices.DataBind()
             ltMessage.Text = "<span class='alert alert-success'>Office added successfully</span>"

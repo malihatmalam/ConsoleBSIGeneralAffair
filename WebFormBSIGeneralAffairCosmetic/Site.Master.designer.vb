@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class SiteMaster
 
     '''<summary>
-    '''ltMenu control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ltMenu As Global.System.Web.UI.WebControls.Literal
-
-    '''<summary>
     '''HyperLink10 control.
     '''</summary>
     '''<remarks>
@@ -32,85 +23,112 @@ Partial Public Class SiteMaster
     Protected WithEvents HyperLink10 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink8 control.
+    '''lbHeaderResource control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink8 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents lbHeaderResource As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''HyperLink5 control.
+    '''hpEmployee control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink5 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpEmployee As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink6 control.
+    '''hpOffice control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpOffice As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink3 control.
+    '''hpDepartment control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink3 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpDepartment As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink4 control.
+    '''lbHeaderGeneralAffair control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents lbHeaderGeneralAffair As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''HyperLink1 control.
+    '''hpProposal control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpProposal As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''HyperLink2 control.
+    '''hpProcurement control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink2 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpProcurement As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink9 control.
+    '''hpService control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink9 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpService As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink7 control.
+    '''hpVendor control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hpVendor As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hpBrand control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hpBrand As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hpAsset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hpAsset As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hpCategory control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hpCategory As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''ltUsername control.

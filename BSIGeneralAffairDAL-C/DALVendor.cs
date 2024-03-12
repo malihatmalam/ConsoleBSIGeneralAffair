@@ -91,8 +91,8 @@ namespace BSIGeneralAffairDAL_C
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
-                var strSql = @"SELECT * FROM [GeneralAffair].[Vendors] Where [VendorName] = @VendorName ";
-                var param = new { VendorName = name };
+                var strSql = @"SELECT * FROM [GeneralAffair].[Vendors] Where [VendorName] like @VendorName ";
+                var param = new { VendorName = $"%{name}%" };
                 var result = conn.Query<Vendor>(strSql, param);
                 return result;
             }

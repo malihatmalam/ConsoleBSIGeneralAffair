@@ -86,13 +86,13 @@ Partial Public Class OfficePages
     Protected WithEvents txtOfficeName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TextOfficeAddress control.
+    '''txtOfficeAddress control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextOfficeAddress As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtOfficeAddress As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnAdd control.

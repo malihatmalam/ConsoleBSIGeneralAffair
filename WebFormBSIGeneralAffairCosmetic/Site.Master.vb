@@ -3,58 +3,42 @@
 Public Class SiteMaster
     Inherits MasterPage
 
-    Function RenderMenu(roleName As String) As String
-        Dim _renderManagerHR As String = "<div class='sidebar-heading'>Admin</div>
-                <li Class='nav-item'>
-                    <a Class='nav-link collapsed' href='Admin/AddUserToRolePage' runat='server'>
-                        <i Class='fas fa-fw fa-cog'></i>
-                        <span>Add Role</span>
-                    </a>
-                </li> <hr class='sidebar-divider my-0'>"
-
-        Dim _renderManagerGA As String = "<div class='sidebar-heading'>Admin</div>
-                <li Class='nav-item'>
-                    <a Class='nav-link collapsed' href='Admin/AddUserToRolePage' runat='server'>
-                        <i Class='fas fa-fw fa-cog'></i>
-                        <span>Add Role</span>
-                    </a>
-                </li> <hr class='sidebar-divider my-0'>"
-
-        Dim _renderStaffAsset As String = "<div class='sidebar-heading'>Contributor</div>
-                <li Class='nav-item'>
-                    <a Class='nav-link collapsed' href='#'>
-                        <i Class='fas fa-fw fa-cog'></i>
-                        <span>Add Article</span>
-                    </a>
-                </li> <hr class='sidebar-divider my-0'>"
-
-        Dim _renderStaffProcurement As String = "<div class='sidebar-heading'>Reader</div>
-                <li Class='nav-item'>
-                    <a Class='nav-link collapsed' href='#'>
-                        <i Class='fas fa-fw fa-cog'></i>
-                        <span>Read Article</span>
-                    </a>
-                </li> <hr class='sidebar-divider my-0'>"
-
+    Sub RenderMenu(roleName As String)
 
         If roleName = "Manager HR" Then
-            Return _renderManagerHR
+            lbHeaderResource.Visible = True
+            hpEmployee.Visible = True
+            hpOffice.Visible = True
+            hpDepartment.Visible = True
+
         End If
 
         If roleName = "Manager GA" Then
-            Return _renderManagerGA
+            lbHeaderGeneralAffair.Visible = True
+            hpVendor.Visible = True
+            hpProposal.Visible = True
+            hpProcurement.Visible = True
+            hpService.Visible = True
+            hpBrand.Visible = True
+            hpAsset.Visible = True
         End If
 
         If roleName = "Staff Asset" Then
-            Return _renderStaffAsset
+            lbHeaderGeneralAffair.Visible = True
+            hpProposal.Visible = True
+            hpService.Visible = True
+            hpBrand.Visible = True
+            hpAsset.Visible = True
+            hpCategory.Visible = True
         End If
 
         If roleName = "Staff Procurement" Then
-            Return _renderStaffProcurement
+            lbHeaderGeneralAffair.Visible = True
+            hpProposal.Visible = True
+            hpProcurement.Visible = True
+            hpVendor.Visible = True
         End If
-
-        Return ""
-    End Function
+    End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         Dim sb As New StringBuilder()
@@ -66,7 +50,9 @@ Public Class SiteMaster
                 pnlAnonymous.Visible = False
                 pnlLoggedIn.Visible = True
 
-                ltMenu.Text = sb.ToString()
+                hpEmployee.Visible = False
+
+                RenderMenu(_userDto.UserRole)
             Else
                 ltUsername.Text = "Guest"
                 pnlAnonymous.Visible = True

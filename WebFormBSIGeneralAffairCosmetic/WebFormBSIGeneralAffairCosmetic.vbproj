@@ -2294,6 +2294,10 @@
       <Project>{dd146b4a-d6a5-4738-bc43-0f9a6828278b}</Project>
       <Name>BSIGeneralAffairBO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BSIGeneralAffairDAL-C\BSIGeneralAffairDAL-C.csproj">
+      <Project>{6BDC38A7-6450-4171-9A09-B312BF6E3ACB}</Project>
+      <Name>BSIGeneralAffairDAL-C</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSIGeneralAffairDAL\BSIGeneralAffairDAL.vbproj">
       <Project>{4972ccaa-1a2e-48e3-9c6c-bea9ac24157c}</Project>
       <Name>BSIGeneralAffairDAL</Name>

@@ -72,7 +72,7 @@
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="txtOfficeAddress" class="form-label">Office Address :</label>
-                            <asp:TextBox ID="TextOfficeAddress" CssClass="form-control" runat="server" />
+                            <asp:TextBox ID="txtOfficeAddress" CssClass="form-control" runat="server" />
                         </div>
                         <asp:Button Text="Add" ID="btnAdd" class="btn btn-primary btn-sm" OnClick="btnAdd_Click" runat="server" />
                     </div>

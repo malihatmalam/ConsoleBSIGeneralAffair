@@ -133,6 +133,8 @@ namespace BSIGeneralAffairBLL
                 var officeDTO = new Office
                 {
                     OfficeName = newOffice.OfficeName,
+                    OfficeAddress = newOffice.OfficeAddress,
+                    OfficeFlagActive = true
                 };
                 _officeDAL.Insert(officeDTO);
             }
@@ -163,7 +165,8 @@ namespace BSIGeneralAffairBLL
                 {
                     OfficeID = (int)updateOffice.OfficeID,
                     OfficeName = updateOffice.OfficeName,
-                    OfficeAddress = updateOffice.OfficeAddress
+                    OfficeAddress = updateOffice.OfficeAddress,
+                    OfficeFlagActive = true
                 };
                 _officeDAL.Update(office);
             }

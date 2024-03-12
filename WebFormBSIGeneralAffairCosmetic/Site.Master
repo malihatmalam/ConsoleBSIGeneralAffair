@@ -79,7 +79,7 @@
                     <div class="sidebar-brand-text mx-3">BSI GA<sup>TM</sup></div>
                 </a>
 
-                <asp:Literal ID="ltMenu" runat="server" />
+                <%--                <asp:Literal ID="ltMenu" runat="server" />--%>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
@@ -97,12 +97,13 @@
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Human Resource
+                    <asp:Label runat="server" ID="lbHeaderResource" Visible="false">Resource</asp:Label>
                 </div>
+
 
                 <!-- Employee -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink8" runat="server" CssClass="nav-link" NavigateUrl="Presentation/EmployeePages.aspx">
+                    <asp:HyperLink ID="hpEmployee" runat="server" CssClass="nav-link" NavigateUrl="Presentation/EmployeePages.aspx" Visible="false">
                         <i class="fas fa-solid fa-user"></i>
                             <span>Employee</span>
                     </asp:HyperLink>
@@ -110,7 +111,7 @@
 
                 <!-- Office -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink5" runat="server" CssClass="nav-link" NavigateUrl="Presentation/OfficePages.aspx">
+                    <asp:HyperLink ID="hpOffice" runat="server" CssClass="nav-link" NavigateUrl="Presentation/OfficePages.aspx" Visible="false">
                             <i class="fas fa-solid fa-building"></i>
                                 <span>Office</span>
                     </asp:HyperLink>
@@ -118,34 +119,34 @@
 
                 <!-- Departement -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink6" runat="server" CssClass="nav-link" NavigateUrl="Presentation/DepartementPages.aspx">
+                    <asp:HyperLink ID="hpDepartment" runat="server" CssClass="nav-link" NavigateUrl="Presentation/DepartementPages.aspx" Visible="false">
                             <i class="fas fa-solid fa-briefcase"></i> 
                                 <span>Departement</span>
                     </asp:HyperLink>
                 </li>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    General Affair
+                    <asp:Label runat="server" ID="lbHeaderGeneralAffair" Visible="false">General Affair</asp:Label>
                 </div>
 
                 <!-- Nav Item - Pages Proposal Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-solid fa-book"></i>
-                        <span>Proposal</span>
-                    </a>
+                    <asp:Label runat="server" ID="hpProposal" Visible="false">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Proposal</span>
+                        </a>
+                    </asp:Label>
+
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Proposal GA:</h6>
-                            <asp:HyperLink ID="HyperLink3" runat="server" CssClass="collapse-item" NavigateUrl="Presentation/HistoryProposalPages.aspx">
+                            <asp:HyperLink ID="hpProcurement" Visible="false" runat="server" CssClass="collapse-item" NavigateUrl="Presentation/HistoryProposalPages.aspx">
                                   Procurement
                             </asp:HyperLink>
-                            <asp:HyperLink ID="HyperLink4" runat="server" CssClass="collapse-item" NavigateUrl="Presentation/HistoryProposalServicePages.aspx">
+                            <asp:HyperLink ID="hpService" Visible="false" runat="server" CssClass="collapse-item" NavigateUrl="Presentation/HistoryProposalServicePages.aspx">
                                   Service
                             </asp:HyperLink>
                         </div>
@@ -155,7 +156,7 @@
 
                 <!-- Vendor -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="nav-link" NavigateUrl="Presentation/VendorPages.aspx">
+                    <asp:HyperLink ID="hpVendor" runat="server" CssClass="nav-link" NavigateUrl="Presentation/VendorPages.aspx" Visible="false">
                       
                          <i class="fas fa-solid fa-address-book"></i> 
                              <span>Vendor</span>
@@ -167,7 +168,7 @@
 
                 <!-- Brand -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink2" runat="server" CssClass="nav-link" NavigateUrl="Presentation/BrandPages.aspx">
+                    <asp:HyperLink ID="hpBrand" runat="server" CssClass="nav-link" NavigateUrl="Presentation/BrandPages.aspx" Visible="false">
                              <i class="fas fa-solid fa-bookmark"></i> 
                                  <span>Brands</span>
                     </asp:HyperLink>
@@ -175,7 +176,7 @@
 
                 <!-- Asset -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink9" runat="server" CssClass="nav-link" NavigateUrl="Presentation/AssetPages.aspx">
+                    <asp:HyperLink ID="hpAsset" runat="server" CssClass="nav-link" NavigateUrl="Presentation/AssetPages.aspx" Visible="false">
                             <i class="fas fa-solid fa-box"></i>
                                 <span> Asset</span>
                     </asp:HyperLink>
@@ -183,7 +184,7 @@
 
                 <!-- Category Asset -->
                 <li class="nav-item">
-                    <asp:HyperLink ID="HyperLink7" runat="server" CssClass="nav-link" NavigateUrl="Presentation/CategoryPages.aspx">
+                    <asp:HyperLink ID="hpCategory" runat="server" CssClass="nav-link" NavigateUrl="Presentation/CategoryPages.aspx" Visible="false">
                             <i class="fas fa-solid fa-star"></i>
                                 <span> Category</span>
                     </asp:HyperLink>
