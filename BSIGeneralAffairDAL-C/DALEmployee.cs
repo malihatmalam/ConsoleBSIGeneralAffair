@@ -15,8 +15,9 @@ namespace BSIGeneralAffairDAL_C
     {
         private string GetConnectionString()
         {
+            return Helper.GetConnectionString();
             //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
         }
 
         public void Create(Employee employee)
@@ -74,13 +75,13 @@ namespace BSIGeneralAffairDAL_C
             throw new NotImplementedException();
         }
 
-        public Employee GetById(int employeeNumberid)
+        public EmployeeList GetById(int employeeNumberid)
         {
             using (SqlConnection conn = new SqlConnection(GetConnectionString()))
             {
                 var strSql = @"[HumanResource].[USP_ListEmployeeByID]";
                 var param = new { EmployeeIDNumber = employeeNumberid };
-                var result = conn.QuerySingleOrDefault<Employee>(strSql, param);
+                var result = conn.QuerySingleOrDefault<EmployeeList>(strSql, param);
                 return result;
             }
         }

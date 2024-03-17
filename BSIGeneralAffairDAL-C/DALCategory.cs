@@ -39,7 +39,9 @@ namespace BSIGeneralAffairDAL_C
 
         private string GetConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+            return Helper.GetConnectionString();
+            //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";
+            //return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
         }
 
         public IEnumerable<AssetCategory> GetAll()

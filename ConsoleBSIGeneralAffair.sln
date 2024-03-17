@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BSIGeneralAffairBLL", "BSIG
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FinalProjectMVC", "FinalProjectMVC", "{DC1B5EFF-F4D5-4DB1-896A-8919095CE63D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCBSIGeneralAffair", "MVCBSIGeneralAffair\MVCBSIGeneralAffair.csproj", "{FBD67E48-D08D-4944-A135-46FE57AB1ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCBSIGeneralAffair", "MVCBSIGeneralAffair\MVCBSIGeneralAffair.csproj", "{FBD67E48-D08D-4944-A135-46FE57AB1ECA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCBSIGeneralAffairCosmetic", "MVCBSIGeneralAffairCosmetic\MVCBSIGeneralAffairCosmetic.csproj", "{28FD65E3-614D-4F46-8F79-0BEBE29E6F11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{FBD67E48-D08D-4944-A135-46FE57AB1ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBD67E48-D08D-4944-A135-46FE57AB1ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBD67E48-D08D-4944-A135-46FE57AB1ECA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FD65E3-614D-4F46-8F79-0BEBE29E6F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FD65E3-614D-4F46-8F79-0BEBE29E6F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FD65E3-614D-4F46-8F79-0BEBE29E6F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FD65E3-614D-4F46-8F79-0BEBE29E6F11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

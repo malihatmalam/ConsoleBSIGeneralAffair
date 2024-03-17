@@ -7,7 +7,7 @@ namespace BSIGeneralAffairDAL_C.Interfaces
 {
     public interface IEmployeeDAL
     {
-        Employee GetById(int id);
+        EmployeeList GetById(int id);
         IEnumerable<EmployeeList> GetAll();
         void Create(Employee employee);
         void Update(Employee employeeUpdate);

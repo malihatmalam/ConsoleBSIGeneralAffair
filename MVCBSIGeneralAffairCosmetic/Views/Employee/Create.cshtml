@@ -1,0 +1,172 @@
+﻿@using BSIGeneralAffairBLL.DTO.Office
+@model BSIGeneralAffairBLL.DTO.Employee.EmployeeCreateDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Creat New Employee </h2>
+<hr />
+@Html.Raw(TempData["message"])
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Firstname" class="control-label">Firstname<span class="text-danger">*</span></span></label>
+                        <input asp-for="Firstname" class="form-control" />
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Lastname</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="EmployeeNumber" class="control-label">Number<span class="text-danger">*</span></label>
+                        <input asp-for="EmployeeNumber" class="form-control" />
+                        <span asp-validation-for="EmployeeNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="DepartementID" class="control-label">Department<span class="text-danger">*</span></label>
+                        <select name="DepartementID" class="form-control">
+                            <option value="">--Select Departement-- </option>
+                            @if (ViewBag.DepartmentOptions != null)
+                            {
+                                @foreach (var department in ViewBag.DepartmentOptions)
+                                {
+                                    <option value="@department.DepartementID">@department.DepartementName</option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="DepartementID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="OfficeID" class="control-label">Office<span class="text-danger">*</span></label>
+                        <select name="OfficeID" class="form-control">
+                            <option value="">--Select Office-- </option>
+                            @* @if (ViewBag.OfficeOptions != null)
+                            { *@
+                            @foreach (var office in ViewBag.OfficeOptions)
+                                {
+                                    <option value="@office.OfficeID">@office.OfficeName</option>
+                                }
+
+                            @* } *@
+                        </select>
+                        <span asp-validation-for="OfficeID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="EmployeePositionLevel" class="control-label">Level<span class="text-danger">*</span></label>
+                        <select asp-for="EmployeePositionLevel" class="form-control">
+                            <option value="">--Select Level-- </option>
+                            <option value="Staff">Staff</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Director">Director</option>
+                        </select>
+                        <span asp-validation-for="EmployeePositionLevel" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="EmployeeJobTitle" class="control-label">Position<span class="text-danger">*</span></label>
+                        <input asp-for="EmployeeJobTitle" class="form-control" />
+                        <span asp-validation-for="EmployeeJobTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="EmployeeType" class="control-label">Type<span class="text-danger">*</span></label>
+                        <select asp-for="EmployeeType" class="form-control">
+                            <option value="O">Other</option>
+                            <option value="P">Staff Procurement</option>
+                            <option value="S">Staff Service</option>
+                        </select>
+                        <span asp-validation-for="EmployeeType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="EmployeeGender" class="control-label">Gender<span class="text-danger">*</span></label>
+                        <select asp-for="EmployeeGender" class="form-control">
+                            <option value="">--Select Gender-- </option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                        <span asp-validation-for="EmployeeGender" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="EmployeeMaritalStatus" class="control-label">Marital Status<span class="text-danger">*</span></label>
+                        <select asp-for="EmployeeMaritalStatus" class="form-control">
+                            <option value="">--Select Marital Status-- </option>
+                            <option value="S">Single</option>
+                            <option value="M">Married</option>
+                        </select>
+                        <span asp-validation-for="EmployeeMaritalStatus" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="EmployeeBirthDate" class="control-label">Birth Date</label>
+                        <input asp-for="EmployeeBirthDate" class="form-control" type="date" />
+                        <span asp-validation-for="EmployeeBirthDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="EmployeeHireDate" class="control-label">Hire Date<span class="text-danger">*</span></label>
+                        <input asp-for="EmployeeHireDate" class="form-control" type="date" />
+                        <span asp-validation-for="EmployeeHireDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="EmployeeSalary" class="control-label">Salary</label>
+                        <input asp-for="EmployeeSalary" class="form-control" type="number" />
+                        <span asp-validation-for="EmployeeSalary" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-auto">
+                    <div>
+                        <a asp-action="Index" class="btn btn-warning">Back</a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

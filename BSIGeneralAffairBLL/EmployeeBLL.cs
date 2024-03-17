@@ -1,11 +1,14 @@
 ﻿using BSIGeneralAffairBLL.DTO.Brand;
+using BSIGeneralAffairBLL.DTO.Departement;
 using BSIGeneralAffairBLL.DTO.Employee;
 using BSIGeneralAffairBLL.Interfaces;
 using BSIGeneralAffairBO_C;
 using BSIGeneralAffairDAL_C;
 using BSIGeneralAffairDAL_C.Interfaces;
+using GeneralAffairInterface;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace BSIGeneralAffairBLL
@@ -38,9 +41,25 @@ namespace BSIGeneralAffairBLL
             return listEmployiesDTO;
         }
 
-        public EmployeeDTO GetByEmployeeID(int employeeID)
+        public EmployeeListDTO GetByEmployeeID(int employeeID)
         {
-            throw new NotImplementedException();
+            EmployeeListDTO employeeDTO = new EmployeeListDTO();
+            var employee = _employeeDAL.GetById(employeeID);
+            if (employee != null)
+            {
+                employeeDTO.EmployeeID = employee.EmployeeID;
+                employeeDTO.Fullname = employee.Fullname;
+                employeeDTO.Department = employee.Department;
+                employeeDTO.Office = employee.Office;
+                employeeDTO.Position = employee.Position;
+                employeeDTO.Gender = employee.Gender;
+                employeeDTO.HireDate = employee.HireDate;
+            }
+            //else
+            //{
+            //    throw new ArgumentException($"Employee {employeeID} not found");
+            //}
+            return employeeDTO;
         }
 
         public IEnumerable<EmployeeListDTO> GetByName(string name)

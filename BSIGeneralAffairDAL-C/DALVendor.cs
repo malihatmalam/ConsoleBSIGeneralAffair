@@ -105,7 +105,7 @@ namespace BSIGeneralAffairDAL_C
                 try
                 {
                     var strSql = @"[GeneralAffair].[USP_UpdateVendor]";
-                    var param = new { VendorID = entity.VendorID, VendorName = entity.VendorName };
+                    var param = new { VendorID = entity.VendorID, VendorName = entity.VendorName, VendorAddress = entity.VendorAddress };
                     int result = conn.Execute(strSql, param);
 
                     //jika result = -1, berarti update data gagal
@@ -127,8 +127,9 @@ namespace BSIGeneralAffairDAL_C
 
         private string GetConnectionString()
         {
+            return Helper.GetConnectionString();
             //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
         }
 
         public int GetCountVendors(string name)

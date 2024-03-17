@@ -1,0 +1,45 @@
+﻿@model BSIGeneralAffairBLL.DTO.Brand.BrandUpdateDTO
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Brand </h2>
+<hr />
+@Html.Raw(TempData["message"])
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-id="@Model.BrandId" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="BrandId" class="control-label">Brand ID</label>
+                <input asp-for="BrandId" class="form-control" value="@Model.BrandId" readonly />
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="BrandName" class="control-label">Brand Name</label>
+                <input asp-for="BrandName" class="form-control" value="@Model.BrandName" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-auto">
+                    <div>
+                        <a asp-action="Index" class="btn btn-warning">Back</a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

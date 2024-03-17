@@ -1,0 +1,90 @@
+﻿@model IEnumerable<BSIGeneralAffairBLL.DTO.Employee.EmployeeListDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List Employee </h2>
+@Html.Raw(ViewBag.Message)
+<p>
+    <a asp-action="Create" class="btn btn-success ">Create New</a>
+</p>
+<table class="table" id="tblemployee">
+    <thead>
+        <tr>
+            <th>
+                Employee Number
+            </th>
+            <th>
+                Fullname
+            </th>
+            <th>
+                Position
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Office
+            </th>
+            <th>
+                Hire Date
+            </th>
+            @* <th>Action</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @if (item.Gender == "M")
+                    {
+                        <span>Male</span>
+                    } else {
+                        <span>Male</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Office)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                @* <td>
+                    <a href="/Employee/Edit/@item.BrandID" class="btn btn-warning">edit</a>
+                    <a href="/Brand/Delete/@item.BrandID" class="btn btn-danger">delete</a>
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+                $('#tblemployee').DataTable();
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    }
+}

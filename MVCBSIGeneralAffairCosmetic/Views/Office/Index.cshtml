@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BSIGeneralAffairBLL.DTO.Office.OfficeDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List Office </h2>
+@Html.Raw(ViewBag.Message)
+<p>
+    <a asp-action="Create" class="btn btn-success ">Create New</a>
+</p>
+<table class="table" id="tbloffice">
+    <thead>
+        <tr>
+            <th>
+                Office Name
+            </th>
+            <th>
+                Office Address
+            </th>
+            <th>
+                Update Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateAt)
+                </td>
+                <td>
+                    <a href="/Office/Edit/@item.OfficeID" class="btn btn-warning">edit</a>
+                    <a href="/Office/Delete/@item.OfficeID" class="btn btn-danger">delete</a>
+                    @* @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+                $('#tbloffice').DataTable();
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    }
+}
