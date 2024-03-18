@@ -108,7 +108,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
             if (brand == null)
             {
                 TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Brand tidak ditemukan !</div>";
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Brand");
             }
             var model = new BrandUpdateDTO {
                 BrandId = id,
@@ -166,7 +166,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
                 if (model == null)
                 {
                     TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Brand tidak ditemukan !</div>";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Brand");
                 }
                 _brandBLL.Delete(id);
                 TempData["message"] = @"<div class='alert alert-success'><strong>Success!</strong>Data Brand berhasil dihapus !</div>";

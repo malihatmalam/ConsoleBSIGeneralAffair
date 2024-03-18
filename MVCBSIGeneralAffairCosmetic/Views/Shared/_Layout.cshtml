@@ -2,6 +2,7 @@
 @* @using SampleMVC.Helpers *@
 @using System.Text
 @using BSIGeneralAffairBLL.DTO.User
+@using MVCBSIGeneralAffairCosmetic.Helpers
 @{
     //Context.Session.GetString("UserName");
     var user = new UserDTO();
@@ -53,94 +54,112 @@
                             <span class="hide-menu">Home</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                            <a class="sidebar-link" href="/Home/Index" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Human Resource</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Employee" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-users"></i>
-                                </span>
-                                <span class="hide-menu">Employee</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Department" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-building-arch"></i>
-                                </span>
-                                <span class="hide-menu">Department</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Office" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-building-estate"></i>
-                                </span>
-                                <span class="hide-menu">Office</span>
-                            </a>
-                        </li>
-                        
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">General Affair</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-file"></i>
-                                </span>
-                                <span class="hide-menu">History Procurement</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-file-info"></i>
-                                </span>
-                                <span class="hide-menu">History Service</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Vendor" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-truck-delivery"></i>
-                                </span>
-                                <span class="hide-menu">Vendor</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Brand" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-badge-tm"></i>
-                                </span>
-                                <span class="hide-menu">Brands</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-box"></i>
-                                </span>
-                                <span class="hide-menu">Asset</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/Category" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-category"></i>
-                                </span>
-                                <span class="hide-menu">Category</span>
-                            </a>
-                        </li>
+                        @if (Auth.CheckRole("Manager HR", user.UserRole) == true)
+                        {
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">Human Resource</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="/Employee/Index" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-users"></i>
+                                    </span>
+                                    <span class="hide-menu">Employee</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="/Department/Index" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-building-arch"></i>
+                                    </span>
+                                    <span class="hide-menu">Department</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="/Office/Index" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-building-estate"></i>
+                                    </span>
+                                    <span class="hide-menu">Office</span>
+                                </a>
+                            </li>
+                        }
+                        @if (Auth.CheckRole("Manager GA,Staff Asset,Staff Procurement", user.UserRole) == true)
+                        {
+
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">General Affair</span>
+                            </li>
+                            @if (Auth.CheckRole("Manager GA,Staff Procurement", user.UserRole) == true)
+                            {
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="@Url.Action("HistoryIndex", "Proposal", new { typeProposal = "Procurement" })" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file"></i>
+                                        </span>
+                                        <span class="hide-menu">History Procurement</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (Auth.CheckRole("Manager GA,Staff Asset", user.UserRole) == true)
+                            {
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="@Url.Action("HistoryIndex", "Proposal", new { typeProposal = "Service" })" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-file-info"></i>
+                                        </span>
+                                        <span class="hide-menu">History Service</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (Auth.CheckRole("Manager GA,Staff Procurement", user.UserRole) == true)
+                            {
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/Vendor/Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-truck-delivery"></i>
+                                        </span>
+                                        <span class="hide-menu">Vendor</span>
+                                    </a>
+                                </li>
+                            }
+                            @if (Auth.CheckRole("Manager GA,Staff Asset", user.UserRole) == true)
+                            {
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/Brand/Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-badge-tm"></i>
+                                        </span>
+                                        <span class="hide-menu">Brands</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/Asset/Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-box"></i>
+                                        </span>
+                                        <span class="hide-menu">Asset</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/Category/Index" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-category"></i>
+                                        </span>
+                                        <span class="hide-menu">Category</span>
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
                         <div class="d-flex">
@@ -176,26 +195,28 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <span class="text-black">@user.UserFirstName @user.UserLastName</span>
+                            <li>
+                                <span class="text-black">@user.UserFirstName @user.UserLastName</span>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" onclick="openDropdown()"
                                    aria-expanded="false">
                                     <img src="~/modernize/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                <div class="dropdown dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-user fs-6"></i>
-                                            <p class="mb-0 fs-3">My Profile</p>
+                                        @* <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-user fs-6"></i>
+                                        <p class="mb-0 fs-3">My Profile</p>
                                         </a>
                                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-mail fs-6"></i>
-                                            <p class="mb-0 fs-3">My Account</p>
+                                        <i class="ti ti-mail fs-6"></i>
+                                        <p class="mb-0 fs-3">My Account</p>
                                         </a>
                                         <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-list-check fs-6"></i>
-                                            <p class="mb-0 fs-3">My Task</p>
-                                        </a>
+                                        <i class="ti ti-list-check fs-6"></i>
+                                        <p class="mb-0 fs-3">My Task</p>
+                                        </a> *@
                                         <a asp-action="Logout" asp-controller="User" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
@@ -218,6 +239,18 @@
     <script src="~/modernize/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="~/modernize/libs/simplebar/dist/simplebar.js"></script>
     <script src="~/modernize/js/dashboard.js"></script>
+    <script>
+        // Fungsi untuk membuka dropdown secara manual
+        function openDropdown() {
+            var dropdownToggle = document.getElementById("drop2");
+            if (dropdownToggle) {
+                var dropdownMenu = dropdownToggle.nextElementSibling;
+                if (dropdownMenu) {
+                    dropdownMenu.classList.add("show");
+                }
+            }
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

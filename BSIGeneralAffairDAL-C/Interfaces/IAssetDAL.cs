@@ -16,6 +16,7 @@ namespace BSIGeneralAffairDAL_C.Interfaces
         int GetCountAssets(string name);
         IEnumerable<Asset> GetWithPaging(int pageNumber, int pageSize, string name);
         IEnumerable<Asset> GetByNumberAsset(string numberAsset);
+        IEnumerable<Asset> GetAssetByNumberAsset(string numberAsset);
         void HandsoverAsset(int userID, int assetID, string handoverDateTime);
         IEnumerable<AssetUser> GetHandsoverHistoryAsset(int assetID);
     }

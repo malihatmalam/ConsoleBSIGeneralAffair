@@ -13,5 +13,6 @@ namespace BSIGeneralAffairDAL_C.Interfaces
         Proposal GetByProposalToken(string proposalToken);
         void Update(Proposal updateProposal);
         int GetCount(string typeProposal, string search);
+        IEnumerable<Proposal> GetHistoryProposal(string typeProposal);
     }
 }

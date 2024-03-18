@@ -14,6 +14,7 @@ namespace BSIGeneralAffairBO_C
         public int? CountService { get; set; }
         public int? CountProposalCompleted { get; set; }
         public int? CountProposalReject { get; set; }
+        public int? CountProposalWaiting { get; set; }
         public int? CountVendors { get; set; }
     }
 }

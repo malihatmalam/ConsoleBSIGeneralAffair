@@ -160,5 +160,33 @@ namespace BSIGeneralAffairBLL
         {
             return _proposalDAL.GetCount(typeProposal, search);
         }
+
+        public IEnumerable<ProposalDTO> GetHistoryProposal(string typeProposal)
+        {
+            List<ProposalDTO> listProposalDTOs = new List<ProposalDTO>();
+            var proposals = _proposalDAL.GetHistoryProposal(typeProposal);
+            foreach (var proposal in proposals)
+            {
+                ProposalDTO proposalDTO = new ProposalDTO();
+                proposalDTO.ProposalToken = proposal.ProposalToken;
+                proposalDTO.DepartementName = proposal.Department.DepartementName;
+                proposalDTO.UserFullName = proposal.User.UserFullName;
+                proposalDTO.EmployeePosition = proposal.Employee.EmployeePosition;
+                proposalDTO.VendorName = proposal.Vendor.VendorName;
+                proposalDTO.VendorAddress = proposal.Vendor.VendorAddress;
+                proposalDTO.ProposalObjective = proposal.ProposalObjective;
+                proposalDTO.ProposalDescription = proposal.ProposalDescription;
+                proposalDTO.ProposalRequireDate = proposal.ProposalRequireDate;
+                proposalDTO.ProposalBudget = proposal.ProposalBudget;
+                proposalDTO.ProposalNote = proposal.ProposalNote;
+                proposalDTO.ProposalType = proposal.ProposalType;
+                proposalDTO.ProposalStatus = proposal.ProposalStatus;
+                proposalDTO.ProposalApproveLevel = proposal.ProposalApproveLevel;
+                proposalDTO.ProposalNegotiationNote = proposal.ProposalNegotiationNote;
+
+                listProposalDTOs.Add(proposalDTO);
+            }
+            return listProposalDTOs;
+        }
     }
 }

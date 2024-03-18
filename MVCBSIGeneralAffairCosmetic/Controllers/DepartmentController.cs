@@ -110,7 +110,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
             if (department == null)
             {
                 TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Departement tidak ditemukan !</div>";
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Department");
             }
             var model = new DepartementUpdateDTO
             {
@@ -169,7 +169,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
                 if (model == null)
                 {
                     TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Department tidak ditemukan !</div>";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Department");
                 }
                 _departmentBLL.Delete(id);
                 TempData["message"] = @"<div class='alert alert-success'><strong>Success!</strong>Data Department berhasil dihapus !</div>";

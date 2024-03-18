@@ -108,7 +108,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
             if (office == null)
             {
                 TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Office tidak ditemukan !</div>";
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Office");
             }
             var model = new OfficeUpdateDTO
             {
@@ -168,7 +168,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
                 if (model == null)
                 {
                     TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Office tidak ditemukan !</div>";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Office");
                 }
                 _officeBLL.Delete(id);
                 TempData["message"] = @"<div class='alert alert-success'><strong>Success!</strong>Data Office berhasil dihapus !</div>";

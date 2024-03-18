@@ -1,0 +1,211 @@
+﻿@using BSIGeneralAffairBLL.DTO.Approval
+@using BSIGeneralAffairBLL.DTO.Proposal
+@using BSIGeneralAffairBLL.DTO.Vendor
+@using System.Globalization
+@model BSIGeneralAffairBLL.DTO.Proposal.ProposalDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    ProposalDTO proposal = Model;
+    var proposalType = ViewData["type"];
+}
+
+<h2>Update Proposal</h2>
+<hr />
+@Html.Raw(TempData["message"])
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Update" asp-controller="Proposal" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-3">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label asp-for="ProposalToken" class="control-label">Token<span class="text-danger">*</span></label>
+                        <input asp-for="ProposalToken" class="form-control" value="@proposal.ProposalToken" readonly />
+                        <span asp-validation-for="ProposalToken" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="ProposalType" class="control-label">Type Proposal</label>
+                        <input asp-for="ProposalType" class="form-control" value="@proposal.ProposalType" readonly />
+                        <span asp-validation-for="ProposalType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="ProposalObjective" class="control-label">Objective / Purpose<span class="text-danger">*</span></label>
+                        <input asp-for="ProposalObjective" class="form-control" value="@proposal.ProposalObjective" />
+                        <span asp-validation-for="ProposalObjective" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="ProposalDescription" class="control-label">Description</label>
+                        <textarea asp-for="ProposalDescription" class="form-control">@proposal.ProposalDescription</textarea>
+                        <span asp-validation-for="ProposalDescription" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="ProposalRequireDate" class="control-label">Require Date<span class="text-danger">*</span></label>
+                        <input asp-for="ProposalRequireDate" class="form-control" value="@DateTime.Parse(proposal.ProposalRequireDate).ToString("yyyy-MM-dd HH:mm")" type="datetime-local" />
+                        <span asp-validation-for="ProposalRequireDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="ProposalBudget" class="control-label">Budget<span class="text-danger">*</span></label>
+                        <input asp-for="ProposalBudget" class="form-control" value="@proposal.ProposalBudget" type="number" />
+                        <span asp-validation-for="ProposalBudget" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="ProposalStatus" class="control-label">Status</label>
+                        <input asp-for="ProposalStatus" class="form-control" value="@proposal.ProposalStatus" readonly disabled />
+                        <span asp-validation-for="ProposalStatus" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="ProposalNote" class="control-label">Note</label>
+                        <textarea asp-for="ProposalNote" class="form-control">@proposal.ProposalNote</textarea>
+                        <span asp-validation-for="ProposalNote" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="ProposalNegotiationNote" class="control-label">Negotiation Note</label>
+                        <textarea asp-for="ProposalNegotiationNote" class="form-control">@proposal.ProposalNegotiationNote</textarea>
+                        <span asp-validation-for="ProposalNegotiationNote" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="UserFullName" class="control-label">Employee Name<span class="text-danger">*</span></label>
+                        <input asp-for="UserFullName" class="form-control" value="@proposal.UserFullName" readonly disabled />
+                        <span asp-validation-for="UserFullName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="EmployeePosition" class="control-label">Employee Position</label>
+                        <input asp-for="EmployeePosition" class="form-control" value="@proposal.EmployeePosition" readonly disabled />
+                        <span asp-validation-for="EmployeePosition" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="DepartementName" class="control-label">Department</label>
+                        <input asp-for="DepartementName" class="form-control" readonly disabled />
+                        <span asp-validation-for="DepartementName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label asp-for="VendorID" class="control-label">Vendor</label>
+                        <select asp-for="VendorID" class="form-control">
+                            <option value="">--Select Vendor-- </option>
+                            @foreach (VendorDTO vendor in ViewBag.VendorOptions)
+                            {
+                                @if (proposal.VendorID == vendor.VendorID)
+                                {
+                                    <option value="@vendor.VendorID" selected>@vendor.VendorName</option>
+                                }
+                                <option value="@vendor.VendorID">@vendor.VendorName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="VendorID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-auto">
+                    <div>
+                        <a href="/Proposal/HistoryIndex?typeProposal=@proposalType" class="btn btn-warning">Back</a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h3>Approval Progress</h3>
+        <hr />
+        @* <form asp-action="Approval" asp-controller="Proposal" method="post">
+            <div class="mb-3 mt-3">
+                <input type="hidden" name="ProposalToken" value="@proposal.ProposalToken" />
+                <label class="control-label">Approval : </label>
+                <select name="ApprovalType" class="form-control">
+                    <option value="">--Select Approval-- </option>
+                    <option value="Approve">Approve</option>
+                    <option value="Reject">Reject</option>
+                </select>
+            </div>
+            <div class="mb-3 mt-3">
+                <div class="form-group">
+                    <label class="control-label" class="form-label">Reason :</label>
+                    <textarea class="form-control" name="ApprovalReason" placeholder="Reason is....."></textarea>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="Submit" value="Handsover" class="btn btn-success btn-sm" />
+            </div>
+        </form> *@
+        <br />
+        <ul class="timeline-widget mb-0 position-relative mb-n5">
+            @foreach (ApprovalDTO approval in ViewBag.ApprovalData)
+            {
+                <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">
+                        <h6>@DateTime.Parse(approval.ApprovalAt).ToString("HH:mm")</h6>
+                        <span>@DateTime.Parse(approval.ApprovalAt).ToString("dd-MM-yyyy")</span>
+                    </div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        @if (approval.ApprovalStatus.Contains("Approve"))
+                        {
+                            <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
+                        }
+                        else
+                        {
+                            <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                        }
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1">
+                        <h6>@approval.ApproverName</h6>
+                        <h6>(@approval.ApproverPosition)</h6>
+                        <span>@approval.ApprovalReason</span>
+
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

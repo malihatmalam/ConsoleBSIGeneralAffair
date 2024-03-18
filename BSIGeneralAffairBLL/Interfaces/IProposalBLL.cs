@@ -13,5 +13,6 @@ namespace BSIGeneralAffairBLL.Interfaces
         ProposalDTO GetByProposalToken(string proposalToken);
         void Update(ProposalUpdateDTO updateProposal);
         int GetCount(string typeProposal, string search);
+        IEnumerable<ProposalDTO> GetHistoryProposal(string typeProposal);
     }
 }

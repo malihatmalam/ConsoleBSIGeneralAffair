@@ -68,6 +68,39 @@ namespace BSIGeneralAffairBLL
             return listAssetsDTO;
         }
 
+        public AssetDTO GetAssetByNumberAsset(string numberAsset)
+        {
+            List<AssetDTO> listAssetsDTO = new List<AssetDTO>();
+            var assets = _assetDAL.GetAssetByNumberAsset(numberAsset);
+            foreach (var asset in assets)
+            {
+                listAssetsDTO.Add(new AssetDTO
+                {
+                    AssetID = asset.AssetID,
+                    AssetBrand = asset.Brand.BrandName,
+                    BrandID = asset.Brand.BrandID,
+                    AssetCategory = asset.Category.AssetCategoryName,
+                    CategoryID = asset.Category.AssetCategoryID,
+                    FactoryNumber = asset.AssetFactoryNumber,
+                    AssetNumber = asset.AssetNumber,
+                    Name = asset.AssetName,
+                    Cost = asset.AssetCost,
+                    ProcurementDate = DateTime.Parse(asset.AssetProcurementDate.ToString()),
+                    Condition = asset.AssetCondition,
+                    AssetFlagActive = asset.AssetFlagActive,
+                    CreatedAt = asset.CreatedAt.ToString(),
+                    UpdatedAt = asset.UpdatedAt.ToString(),
+                });
+            }
+
+            AssetDTO assetData = new AssetDTO();
+            if (listAssetsDTO.Count > 0)
+            {
+                assetData = listAssetsDTO[0];   
+            }
+            return assetData;
+        }
+
         public AssetDTO GetByAssetID(int assetID)
         {
             AssetDTO assetDTO = new AssetDTO();
@@ -148,7 +181,7 @@ namespace BSIGeneralAffairBLL
 
             if (listAssetsDTO.Count == 0)
             {
-                throw new ArgumentException("Username atau Password salah");
+                throw new ArgumentException("Data asset tidak ditemukan");
             }
             else
             {

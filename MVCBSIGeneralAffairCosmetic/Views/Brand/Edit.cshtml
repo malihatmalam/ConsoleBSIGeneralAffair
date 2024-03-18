@@ -9,7 +9,7 @@
 @Html.Raw(TempData["message"])
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" asp-route-id="@Model.BrandId" method="post">
+        <form asp-action="Edit" asp-route-id="@Model.BrandId" method="post" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mt-3">
                 <label asp-for="BrandId" class="control-label">Brand ID</label>

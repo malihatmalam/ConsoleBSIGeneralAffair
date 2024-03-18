@@ -1,0 +1,172 @@
+﻿@using BSIGeneralAffairBLL.DTO.Asset
+@using BSIGeneralAffairBLL.DTO.Brand
+@using BSIGeneralAffairBLL.DTO.Category
+@using BSIGeneralAffairBLL.DTO.User
+@model BSIGeneralAffairBLL.DTO.Asset.AssetUpdateDTO
+
+@{
+    ViewData["Title"] = "Edit";
+    AssetDTO asset = (AssetDTO)ViewBag.asset;
+}
+
+<h2>Update Asset </h2>
+<hr />
+@Html.Raw(TempData["message"])
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Update" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="AssetNumber" class="control-label">Number Asset<span class="text-danger">*</span></label>
+                        <input asp-for="AssetNumber" class="form-control" value="@asset.AssetNumber" readonly />
+                        <span asp-validation-for="AssetNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="AssetFactoryNumber" class="control-label">Number Factory</label>
+                        <input asp-for="AssetFactoryNumber" class="form-control" value="@asset.FactoryNumber" />
+                        <span asp-validation-for="AssetFactoryNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-8">
+                    <div class="form-group">
+                        <label asp-for="AsssetName" class="control-label">Asset Name<span class="text-danger">*</span></label>
+                        <input asp-for="AsssetName" class="form-control" value="@asset.Name" />
+                        <span asp-validation-for="AsssetName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="AssetCost" class="control-label">Cost<span class="text-danger">*</span></label>
+                        <input asp-for="AssetCost" class="form-control" type="number" value="@asset.Cost" />
+                        <span asp-validation-for="AssetCost" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Brand" class="control-label">Brand<span class="text-danger">*</span></label>
+                        <select asp-for="Brand" class="form-control">
+                            <option value="">--Select Brand-- </option>
+                            @foreach (BrandDTO brand in ViewBag.BrandOptions)
+                            {
+                                @if (asset.BrandID == brand.BrandID)
+                                {
+                                    <option value="@brand.BrandID" selected>@brand.BrandName</option>
+                                }
+                                <option value="@brand.BrandID">@brand.BrandName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Brand" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="AssetCategoryID" class="control-label">Category<span class="text-danger">*</span></label>
+                        <select asp-for="AssetCategoryID" class="form-control">
+                            <option value="">--Select Category-- </option>
+                            @foreach (CategoryDTO category in ViewBag.CategoryOptions)
+                            {
+                                @if (asset.CategoryID == category.AssetCategoryID)
+                                {
+                                    <option value="@category.AssetCategoryID" selected>@category.AssetCategoryName</option>
+                                }
+                                <option value="@category.AssetCategoryID">@category.AssetCategoryName</option>
+                            }
+                        </select>
+                        <span asp-validation-for="AssetCategoryID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="AssetProcurementDate" class="control-label">Procurement Date<span class="text-danger">*</span></label>
+                        <input asp-for="AssetProcurementDate" class="form-control" type="date" value="@asset.ProcurementDate.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="AssetProcurementDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="AssetCondition" class="control-label">Condition<span class="text-danger">*</span></label>
+                        <select asp-for="AssetCondition" class="form-control">
+                            <option value="">--Select Condition-- </option>
+                            <option value="New" selected="@((asset.Condition == "New" ? "selected" : null))">New</option>
+                            <option value="Good" selected="@((asset.Condition == "Good" ? "selected" : null))">Good</option>
+                            <option value="Needs Repair" selected="@((asset.Condition == "Needs Repair" ? "selected" : null))">Needs Repair</option>
+                            <option value="Damaged" selected="@((asset.Condition == "Damaged" ? "selected" : null))">Damaged </option>
+                        </select>
+                        <span asp-validation-for="AssetCondition" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+                <div class="col-auto">
+                    <div>
+                        <a asp-action="Index" class="btn btn-warning">Back</a>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h3>Handsover Asset </h3>
+        <hr />
+        <form asp-action="Handsover" asp-controller="Asset" method="post">
+            <div class="mb-3 mt-3">
+                <input type="hidden" name="assetID" value="@asset.AssetID" />
+                <input type="hidden" name="assetNumber" value="@asset.AssetNumber" />
+                <label class="control-label">Employee : </label>
+                <select name="userID" class="form-control">
+                    <option value="">--Select Employee-- </option>
+                    @foreach (UserDTO user in ViewBag.UserOptions)
+                    {
+                        <option value="@user.UserID">@user.UserFullName</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3 mt-3">
+                <div class="form-group">
+                    <label class="control-label" class="form-label">Handsover Date :</label>
+                    <input type="date" class="form-control" name="handsoverDate" />
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="Submit" value="Handsover" class="btn btn-success btn-sm" />
+            </div>
+        </form>
+        <br />
+        <ul class="timeline-widget mb-0 position-relative mb-n5">
+            @foreach (AssetUserDTO user in ViewBag.HandsoverData)
+            {
+                <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">@user.HandoverDateTime?.ToString("dd/MM/yyyy")</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                        <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1">@user.Users.UserFullName</div>
+                </li>
+            }
+        </ul>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -16,8 +16,9 @@ namespace BSIGeneralAffairDAL_C
     {
         private string GetConnectionString()
         {
+            return Helper.GetConnectionString();
             //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
         }
 
         public void Delete(string assetNumber)
@@ -67,6 +68,7 @@ namespace BSIGeneralAffairDAL_C
                         asset.Category = new AssetCategory();
                         asset.Category.AssetCategoryName = dr["Category"].ToString();
                         asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
+                        asset.AssetNumber = dr["AssetNumber"].ToString();
                         asset.AssetName = dr["Name"].ToString();
                         asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
                         asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
@@ -389,6 +391,46 @@ namespace BSIGeneralAffairDAL_C
                 }
             }
         }
-        
+
+        public IEnumerable<Asset> GetAssetByNumberAsset(string numberAsset)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                List<Asset> assets = new List<Asset>();
+                //var strSql = @"select * from Categories order by CategoryName";
+                var strSql = @"[GeneralAffair].[USP_GetAssetByAssetNumber]";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@AssetNumber", $"{numberAsset}");
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        Asset asset = new Asset();
+                        asset.AssetID = Convert.ToInt32(dr["ID"]);
+                        asset.Brand = new Brand();
+                        asset.Brand.BrandName = dr["Brand"].ToString();
+                        asset.Brand.BrandID = (short?)Convert.ToInt32(dr["BrandID"]);
+                        asset.Category = new AssetCategory();
+                        asset.Category.AssetCategoryName = dr["Category"].ToString();
+                        asset.Category.AssetCategoryID = (short?)Convert.ToInt32(dr["CategoryID"]);
+                        asset.AssetFactoryNumber = dr["FactoryNumber"].ToString();
+                        asset.AssetName = dr["Name"].ToString();
+                        asset.AssetCost = Convert.ToDecimal(dr["Cost"]);
+                        asset.AssetNumber = dr["AssetNumber"].ToString();
+                        asset.AssetProcurementDate = DateTime.Parse(dr["ProcurementDate"].ToString());
+                        asset.AssetCondition = dr["Condition"].ToString();
+
+                        assets.Add(asset);
+                    }
+                }
+                return assets;
+            }
+        }
     }
 }

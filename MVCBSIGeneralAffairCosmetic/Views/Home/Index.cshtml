@@ -1,8 +1,353 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<BSIGeneralAffairBLL.DTO.Proposal.ProposalDTO>
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var dashboardData = ViewBag.DashboardData;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2>Welcome to BSI Procurement</h2>
+@Html.Raw(ViewBag.Message)
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row alig n-items-start">
+                    <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Asset Value </h5>
+                        <h4 class="fw-semibold mb-3">Rp @dashboardData.TotalCostAssets.ToString("#,##0")</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-currency-dollar fs-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card overflow-hidden">
+            <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Proposal Type</h5>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h4 class="fw-semibold mb-3">@(dashboardData.CountProcurement + dashboardData.CountService)</h4>
+                        <div class="d-flex align-items-center">
+                            <div class="me-4">
+                                <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">Procurement</span>
+                            </div>
+                            <div>
+                                <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">Service</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                            <div id="proposaltype"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card overflow-hidden">
+            <div class="card-body p-4">
+                <h5 class="card-title mb-9 fw-semibold">Proposal Status</h5>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h4 class="fw-semibold mb-3">@(dashboardData.CountProposalCompleted + dashboardData.CountProposalReject + dashboardData.CountProposalWaiting)</h4>
+                        <div class="d-flex align-items-center">
+                            <div class="me-2">
+                                <span class="round-8 bg-success rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">Completed</span>
+                            </div>
+                            <div class="me-2">
+                                <span class="round-8 bg-warning rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">Waiting</span>
+                            </div>
+                            <div class="me-2">
+                                <span class="round-8 bg-danger rounded-circle me-2 d-inline-block"></span>
+                                <span class="fs-2">Reject</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                            <div id="proposalstatus"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row alig n-items-start">
+                    <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Asset </h5>
+                        <h4 class="fw-semibold mb-3">@dashboardData.CountAssets</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-box fs-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row alig n-items-start">
+                    <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Vendor  </h5>
+                        <h4 class="fw-semibold mb-3">@dashboardData.CountVendors</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-truck-delivery fs-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row alig n-items-start">
+                    <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Brand </h5>
+                        <h4 class="fw-semibold mb-3">@dashboardData.CountBrands</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-badge-tm fs-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row alig n-items-start">
+                    <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Employee </h5>
+                        <h4 class="fw-semibold mb-3">@dashboardData.CountBrands</h4>
+                        <div class="d-flex align-items-center pb-1">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-users fs-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table" id="tblProposal">
+    <thead>
+        <tr>
+            <th>
+                Token
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Employee
+            </th>
+            <th>
+                Budget
+            </th>
+            <th>
+                Require Date
+            </th>
+            <th>
+                Type
+            </th>
+            @* <th>
+            Status
+            </th> *@
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalToken)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartementName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserFullName)
+                    ( @Html.DisplayFor(modelItem => item.EmployeePosition) )
+                </td>
+                <td>
+                    @string.Format("Rp {0:#,0}", item.ProposalBudget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalRequireDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalType)
+                </td>
+                @*                 <td>
+            @Html.DisplayFor(modelItem => item.ProposalStatus)
+            </td> *@
+                <td>
+                    <a href="@Url.Action("ApprovalProcess", "Proposal", new { proposalToken = item.ProposalToken })" class="btn btn-warning">Approval</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+                $('#tblProposal').DataTable();
+            });
+        </script>
+        <script>
+            var breakup = {
+                color: "#adb5bd",
+                series: [@dashboardData.CountProcurement, @dashboardData.CountService],
+                labels: ["Procurement", "Service"],
+                chart: {
+                    width: 180,
+                    type: "donut",
+                    fontFamily: "Plus Jakarta Sans', sans-serif",
+                    foreColor: "#adb0bb",
+                },
+                plotOptions: {
+                    pie: {
+                        startAngle: 0,
+                        endAngle: 360,
+                        donut: {
+                            size: '75%',
+                        },
+                    },
+                },
+                stroke: {
+                    show: false,
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                legend: {
+                    show: false,
+                },
+                colors: ["#5D87FF", "#ecf2ff", "#F9F9FD"],
+                responsive: [
+                    {
+                        breakpoint: 991,
+                        options: {
+                            chart: {
+                                width: 150,
+                            },
+                        },
+                    },
+                ],
+                tooltip: {
+                    theme: "dark",
+                    fillSeriesColor: false,
+                },
+            };
+
+            var chart = new ApexCharts(document.querySelector("#proposaltype"), breakup);
+            chart.render();
+
+            var breakup2 = {
+                color: "#adb5bd",
+                series: [@dashboardData.CountProposalCompleted, @dashboardData.CountProposalReject, @dashboardData.CountProposalWaiting],
+                labels: ["Completed", "Reject", "Waiting"],
+                chart: {
+                    width: 180,
+                    type: "donut",
+                    fontFamily: "Plus Jakarta Sans', sans-serif",
+                    foreColor: "#adb0bb",
+                },
+                plotOptions: {
+                    pie: {
+                        startAngle: 0,
+                        endAngle: 360,
+                        donut: {
+                            size: '75%',
+                        },
+                    },
+                },
+                stroke: {
+                    show: false,
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                legend: {
+                    show: false,
+                },
+                colors: ["#28a745", "#dc3545", "#FFC007"],
+                responsive: [
+                    {
+                        breakpoint: 991,
+                        options: {
+                            chart: {
+                                width: 150,
+                            },
+                        },
+                    },
+                ],
+                tooltip: {
+                    theme: "dark",
+                    fillSeriesColor: false,
+                },
+            };
+
+            var chart = new ApexCharts(document.querySelector("#proposalstatus"), breakup2);
+            chart.render();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    }
+}

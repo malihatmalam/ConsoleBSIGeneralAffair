@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BSIGeneralAffairBLL.DTO.Asset.AssetDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List Asset </h2>
+@Html.Raw(ViewBag.Message)
+<p>
+    <a asp-action="Create" class="btn btn-success ">Create New</a>
+</p>
+<table class="table" id="tblasset">
+    <thead>
+        <tr>
+            <th>
+                Asset Number
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Factory Number
+            </th>
+            <th>
+                Asset Name
+            </th>
+            <th>
+                Cost
+            </th>
+            <th>
+                Procurement Date
+            </th>
+            <th>
+                Condition
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetBrand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FactoryNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @string.Format("Rp {0:#,0}", item.Cost)
+                </td>
+                <td>
+                    @item.ProcurementDate.ToString("M/d/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Condition)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Asset", new { assetNumber = item.AssetNumber })" class="btn btn-info">Edit</a>
+                    <a href="@Url.Action("Delete", "Asset", new { assetNumber = item.AssetNumber })" class="btn btn-danger">delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        <script>
+            $(document).ready(function () {
+                $('#tblasset').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap.min.js"></script>
+    }
+}

@@ -108,7 +108,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
             if (vendor == null)
             {
                 TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Vendor tidak ditemukan !</div>";
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "Vendor");
             }
             var model = new VendorUpdateDTO
             {
@@ -168,7 +168,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
                 if (model == null)
                 {
                     TempData["message"] = @"<div class='alert alert-danger'><strong>Error!</strong>Vendor tidak ditemukan !</div>";
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Vendor");
                 }
                 _vendorBLL.Delete(id);
                 TempData["message"] = @"<div class='alert alert-success'><strong>Success!</strong>Data Vendor berhasil dihapus !</div>";

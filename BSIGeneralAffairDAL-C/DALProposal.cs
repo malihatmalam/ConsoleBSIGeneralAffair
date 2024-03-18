@@ -16,8 +16,9 @@ namespace BSIGeneralAffairDAL_C
     {
         private string GetConnectionString()
         {
+            return Helper.GetConnectionString();
             //return @"Data Source=ACTUAL;Initial Catalog=LatihanDb;Integrated Security=True;TrustServerCertificate=True";
-            return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
         }
 
         public IEnumerable<Proposal> GetHistoryProposal(string typeProposal, int pageNumber, int pageSize, string search)
@@ -236,6 +237,59 @@ namespace BSIGeneralAffairDAL_C
                 return result;
             }
 
+        }
+
+        public IEnumerable<Proposal> GetHistoryProposal(string typeProposal)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnectionString()))
+            {
+                List<Proposal> proposals = new List<Proposal>();
+
+                var strSql = "";
+                if (typeProposal == "Procurement")
+                {
+                    strSql = @"[GeneralAffair].[USP_HistoryProcurement]";
+                }
+                else
+                {
+                    strSql = @"[GeneralAffair].[USP_HistoryService]";
+                }
+
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Search", $"%{search}%");
+                //cmd.Parameters.AddWithValue("@Offset", (pageNumber - 1) * pageSize);
+                //cmd.Parameters.AddWithValue("@PageSize", pageSize);
+
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        Proposal proposal = new Proposal();
+                        proposal.ProposalToken = dr["ProposalToken"].ToString();
+                        proposal.Department.DepartementName = dr["DepartementName"].ToString();
+                        proposal.User.UserFullName = dr["EmployeeName"].ToString();
+                        proposal.Employee.EmployeePosition = dr["EmployeePosition"].ToString();
+                        proposal.Vendor.VendorName = dr["VendorName"].ToString();
+                        proposal.Vendor.VendorAddress = dr["VendorAddress"].ToString();
+                        proposal.ProposalObjective = dr["ProposalObjective"].ToString();
+                        proposal.ProposalDescription = dr["ProposalDescription"].ToString();
+                        proposal.ProposalRequireDate = dr["ProposalRequireDate"].ToString();
+                        proposal.ProposalBudget = Convert.ToDecimal(dr["ProposalBudget"]);
+                        proposal.ProposalNote = dr["ProposalNote"].ToString();
+                        proposal.ProposalType = dr["ProposalType"].ToString();
+                        proposal.ProposalStatus = dr["ProposalStatus"].ToString();
+                        proposal.ProposalApproveLevel = (short?)Convert.ToInt32(dr["ProposalApproveLevel"]);
+                        proposal.ProposalNegotiationNote = dr["NegotiationNote"].ToString();
+
+                        proposals.Add(proposal);
+                    }
+                }
+                return proposals;
+            }
         }
     }
 }

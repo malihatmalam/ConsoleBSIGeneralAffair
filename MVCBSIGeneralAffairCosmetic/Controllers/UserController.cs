@@ -23,6 +23,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel loginData)
         {
+            TempData["message"] = String.Empty;
             if (!ModelState.IsValid)
             {
                 return View();
@@ -37,7 +38,7 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
                         var userDtoSerialize = JsonSerializer.Serialize(user);
                         HttpContext.Session.SetString("user", userDtoSerialize);
                         //TempData["Message"] = "Welcome " + user.UserFirstName;
-                        return RedirectToAction("Index", "Brand");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -62,8 +63,8 @@ namespace MVCBSIGeneralAffairCosmetic.Controllers
         {
             HttpContext.Session.Remove("user");
             TempData["message"] = String.Empty;
+            ViewData["type"] = String.Empty;
             return RedirectToAction("Login");
-
         }
     }
 }
