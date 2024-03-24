@@ -1,0 +1,6 @@
+@RestAPIBSIGeneralAffair_HostAddress = http://localhost:5080
+
+GET {{RestAPIBSIGeneralAffair_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
