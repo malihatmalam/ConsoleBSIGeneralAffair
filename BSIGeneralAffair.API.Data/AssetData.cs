@@ -77,10 +77,12 @@ namespace BSIGeneralAffair.API.Data
             }
         }
 
-        public async Task<IEnumerable<Asset>> GetByUser(int userId)
+        public async Task<IEnumerable<Asset>> GetByUser(string employeeNumber)
         {
             try
             {
+                var userId = await _context.Employees.SingleOrDefaultAsync(e => e.EmployeeIdnumber == employeeNumber );
+
                 using (SqlConnection conn = new SqlConnection(GetConnectionString()))
                 {
                     List<Asset> assets = new List<Asset>();
@@ -89,7 +91,7 @@ namespace BSIGeneralAffair.API.Data
                     SqlCommand cmd = new SqlCommand(strSql, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    cmd.Parameters.AddWithValue("@UserID", userId.UserId);
 
                     conn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();

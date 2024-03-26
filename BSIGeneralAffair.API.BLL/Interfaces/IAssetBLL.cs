@@ -10,7 +10,7 @@ namespace BSIGeneralAffair.API.BLL.Interfaces
 {
     public interface IAssetBLL
     {
-        Task<IEnumerable<AssetDTO>> GetByUser(int userId);
+        Task<IEnumerable<AssetDTO>> GetByUser(string employeeNumber);
         Task<AssetDTO> GetByNumber(string numberAsset);
         Task<IEnumerable<AssetUserDTO>> GetHandsoverHistory(int assetID);
     }

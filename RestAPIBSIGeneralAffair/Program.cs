@@ -69,6 +69,8 @@ builder.Services.AddScoped<IAssetData, AssetData>();
 builder.Services.AddScoped<IAssetBLL, AssetBLL>();
 builder.Services.AddScoped<IApprovalData, ApprovalData>();
 builder.Services.AddScoped<IApprovalBLL, ApprovalBLL>();
+builder.Services.AddScoped<IHomepageData, HomepageData>();
+builder.Services.AddScoped<IHomepageBLL, HomepageBLL>();
 // END DI
 
 // automapper

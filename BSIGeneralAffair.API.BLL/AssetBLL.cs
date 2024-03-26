@@ -36,11 +36,11 @@ namespace BSIGeneralAffair.API.BLL
             }
         }
 
-        public async Task<IEnumerable<AssetDTO>> GetByUser(int userId)
+        public async Task<IEnumerable<AssetDTO>> GetByUser(string employeeNumber)
         {
             try
             {
-                var assets = _mapper.Map<IEnumerable<AssetDTO>>(await _assetData.GetByUser(userId));
+                var assets = _mapper.Map<IEnumerable<AssetDTO>>(await _assetData.GetByUser(employeeNumber));
                 return assets;
             }
             catch (Exception ex)

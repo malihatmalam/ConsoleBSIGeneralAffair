@@ -46,6 +46,7 @@ namespace BSIGeneralAffair.API.BLL.Profiles
 
 
             CreateMap<Vendor, VendorDTO>().ReverseMap();
+            CreateMap<Homepage, HomepageDTO>().ReverseMap();
         }
     }
 }

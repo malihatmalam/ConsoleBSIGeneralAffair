@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace BSIGeneralAffair.API.Data.Interfaces
 {
-    public interface IAssetData
+    public interface IHomepageData
     {
-        Task<IEnumerable<Asset>> GetByUser(string employeeNumber);
-        Task<Asset> GetByNumber(string numberAsset);
-        Task<IEnumerable<AssetUser>> GetHandsoverHistory(int assetID);
+        Task<Homepage> GetHomepage(string employeeNumber);
     }
 }

@@ -27,7 +27,7 @@ namespace RestAPIBSIGeneralAffair.Controllers
 
         [Authorize]
         // GET: api/<ProposalController>
-        [HttpPost("/waiting")]
+        [HttpPost("waiting")]
         public async Task<IEnumerable<ProposalDTO>> GetWaiting([FromForm] string emplyeeNumber)
         {
             var result = await _proposalBLL.GetWaitingProposal(emplyeeNumber);
@@ -36,7 +36,7 @@ namespace RestAPIBSIGeneralAffair.Controllers
 
         [Authorize]
         // GET: api/<ProposalController>
-        [HttpPost("/history")]
+        [HttpPost("history")]
         public async Task<IEnumerable<ProposalDTO>> GetHistory([FromForm] string emplyeeNumber, [FromForm] string typeProposal)
         {
             var result = await _proposalBLL.GetHistoryProposal(emplyeeNumber,typeProposal);

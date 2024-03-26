@@ -19,7 +19,7 @@ namespace RestAPIBSIGeneralAffair.Controllers
 
         [Authorize]
         // GET: api/<AssetController>
-        [HttpGet("/detail/{numberAsset}")]
+        [HttpGet("detail/{numberAsset}")]
         public async Task<IActionResult> GetByNumber(string numberAsset)
         {
             var result = await _assetBLL.GetByNumber(numberAsset);
@@ -32,16 +32,16 @@ namespace RestAPIBSIGeneralAffair.Controllers
 
         [Authorize]
         // GET api/<AssetController>/5
-        [HttpPost("/myAsset")]
-        public async Task<IActionResult> GetMyAsset([FromForm]int userId)
+        [HttpPost("myAsset")]
+        public async Task<IActionResult> GetMyAsset([FromForm]string employeeNumber)
         {
-            var result = await _assetBLL.GetByUser(userId);
+            var result = await _assetBLL.GetByUser(employeeNumber);
             return Ok(result);
         }
 
         [Authorize]
         // GET api/<AssetController>/5
-        [HttpPost("/handsoverHistory")]
+        [HttpPost("handsoverHistory")]
         public async Task<IActionResult> GetHandsoverHistory([FromForm] int assetID)
         {
             var result = await _assetBLL.GetHandsoverHistory(assetID);
